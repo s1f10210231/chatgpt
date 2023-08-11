@@ -3,6 +3,6 @@ from django.http import HttpResponse
 
 # Create your views here.
 
-def root(request):
-  return HttpResponse('Hello Django')
+def index(request):
+    return render(request,"story_app/index.html")
 
