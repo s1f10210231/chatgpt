@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <h1>小説を書いてみよう</h1>
+    <hr>
+    <p>自分好みの作品を自由に作成しよう</p>
+    <form method="post">
+        {% csrf_token %}
+        <p>ジャンル</p>
+        <input type="text" id="genre_input" name="genre_input" placeholder="恋愛、ファンタジー、ホラー、etc...">
+        <p>主人公は誰？</p>
+        <input type="text" id="who_input" name="who_input" placeholder="勇者、異能力者、探偵...">
+        <p>場所</p>
+        <input type="text" id="where_input" name="where_input" placeholder="学校、病院、etc...">
+        <p>いつ？</p>
+        <input type="text" id="when_input" name="when_input" placeholder="過去、現在、未来、etc...">
+        <p>どのような展開にする？</p>
+        <input type="text" id="how_input" name="how_input" placeholder="助ける展開、胸糞展開、etc...">
+        <br>
+        <input type="submit" value="小説を作成">
+    </form>
+
+
+    {% if generated_novel %}
+    <h2>生成された小説:</h2>
+    <p>{{title}}</p>
+    <p>{{ generated_novel }}</p>
+    {% endif %}
+</body>
+</html>
