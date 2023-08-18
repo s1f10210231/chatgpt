@@ -1,0 +1,31 @@
+header {
+    top: 0px;
+    left: 0px;
+}
+
+.header {
+    height: 80px;
+    border-bottom: 3px solid #65ab88;
+    background-color: rgba(226,236,225,0.58);
+}
+
+.logo {
+    float: left;
+    margin: 27px 20px;
+}
+
+.header-list li{
+    list-style: none;
+    float: right;
+    padding: 47px 20px;
+}
+
+.show-contents {
+    height: 400px;
+    margin: 50px;
+}
+
+.show {
+    padding-bottom: 10px;
+    border-bottom: 3px solid #65ab88;
+}

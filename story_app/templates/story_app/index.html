@@ -1,13 +1,33 @@
 
 <!-- 一覧表示ページ -->
+{% load static %}
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'story_app/css/index.css' %}">
+    <title>top</title>
 </head>
 <body>
-    <h1>hello_openai</h1>
+    <header>
+        <div class="header">
+            <h2 class="logo">小説作成サイト</h2>
+            <div class="header-list">
+                <ul>
+                    <li class="header-list-item"><a href="#">マイページ</a></li>
+                    <li class="header-list-item"><a href="#">閲覧</a></li>
+                    <li class="header-list-item"><a href="#">作成</a></li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <div class="show-contents">
+        <p class="show">作品一覧</p>
+    </div>
+    <div class="contens">
+
+    </div>
+
 </body>
 </html>
