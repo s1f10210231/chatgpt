@@ -1,10 +1,10 @@
-header {
-    position: relative;
-    top: 0px;
-    left: 0px;
+body {
+    margin: 0px;
 }
 
-.header {
+header {
+    top: 0px;
+    left: 0px;
     height: 80px;
     border-bottom: 3px solid #65ab88;
     background-color: rgba(226,236,225,0.58);
