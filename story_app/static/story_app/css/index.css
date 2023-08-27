@@ -1,9 +1,10 @@
+body {
+    margin: 0px;
+}
+
 header {
     top: 0px;
     left: 0px;
-}
-
-.header {
     height: 80px;
     border-bottom: 3px solid #65ab88;
     background-color: rgba(226,236,225,0.58);
@@ -20,12 +21,27 @@ header {
     padding: 47px 20px;
 }
 
+.main {
+    height: 800px;
+}
+
 .show-contents {
-    height: 400px;
+    height: 40px;
     margin: 50px;
 }
 
 .show {
     padding-bottom: 10px;
     border-bottom: 3px solid #65ab88;
+}
+
+footer {
+    background-color: black;
+    height: 60px;
+}
+
+.footer-text {
+    text-align: center;
+    padding: 20px 0px;
+    color: white;
 }

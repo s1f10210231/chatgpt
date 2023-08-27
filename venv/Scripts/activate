@@ -37,7 +37,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\iniad\Documents\cs4ex\chatgpt\venv"
+VIRTUAL_ENV="C:\Users\iniad\Documents\GitHub\chatgpt\venv"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
