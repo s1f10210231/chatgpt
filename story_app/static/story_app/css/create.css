@@ -1,13 +1,16 @@
-.main{
+.main {
     text-align: center;
-}
-.title{
+  }
+  
+  .title {
     border-bottom: 3px solid #65ab88;
-}
-.example{
+  }
+  
+  .example {
     background-color: rgba(24, 244, 178, 0.103);
-}
-.create {
+  }
+  
+  .create {
     background-color: #65ab88;
     color: white;
     border: none;
@@ -80,19 +83,5 @@
   
   .generate input[type="submit"]:active {
     background-color: #337257;
-  }
-  
-  /* アニメーション */
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-  
-  .generate {
-    animation: fadeIn 1s ease;
   }
   
