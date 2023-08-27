@@ -25,9 +25,17 @@
     <div class="main">
         <div class="show-contents">
             <p class="show">作品一覧</p>
-        </div>
-        <div class="contens">
-
+            <div class="contens">
+                {% if novels %}
+                <ul>
+                    {% for novel in novels %}
+                    <li><a href="#">{{ novel.title }}</a></li>
+                    {% endfor %}
+                </ul>
+                {% else %}
+                <p>小説がありません</p>
+                {% endif %}
+            </div>
         </div>
     </div>
 
