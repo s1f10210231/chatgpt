@@ -1,0 +1,98 @@
+.main{
+    text-align: center;
+}
+.title{
+    border-bottom: 3px solid #65ab88;
+}
+.example{
+    background-color: rgba(24, 244, 178, 0.103);
+}
+.create {
+    background-color: #65ab88;
+    color: white;
+    border: none;
+    padding: 10px 200px;
+    margin: 10px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .create:hover {
+    background-color: #4b9070;
+    transform: scale(1.05);
+  }
+  
+  .create:active {
+    background-color: #337257;
+  }
+  
+  /* アニメーション */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .create {
+    animation: fadeIn 1s ease;
+  }
+  
+  .generate {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+    margin: 0 auto;
+  }
+  
+  .generate p {
+    margin: 10px 0;
+  }
+  
+  .generate input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin: 4px 0;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+  }
+  
+  .generate input[type="submit"] {
+    background-color: #65ab88;
+    color: white;
+    border: none;
+    padding: 10px 200px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  .generate input[type="submit"]:hover {
+    background-color: #4b9070;
+    transform: scale(1.05);
+  }
+  
+  .generate input[type="submit"]:active {
+    background-color: #337257;
+  }
+  
+  /* アニメーション */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  .generate {
+    animation: fadeIn 1s ease;
+  }
+  

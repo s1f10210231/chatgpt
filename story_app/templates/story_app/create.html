@@ -4,12 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <link rel="stylesheet" href="{% static 'story_app/css/create.css' %}">
 </head>
 <body>
-    <h1>小説を書いてみよう</h1>
-    <hr>
-    <p>自分好みの作品を自由に作成しよう</p>
-    <form method="post">
+    <div class="main">    
+        <h1 class="title">小説を書いてみよう</h1>
+    <div class="example">
+        <p>自分好みの作品を自由に作成しよう</p>
+
+    </div>
+
+    <form method="post" class="generate">
         {% csrf_token %}
         <p>ジャンル</p>
         <input type="text" id="genre_input" name="genre_input" placeholder="恋愛、ファンタジー、ホラー、etc...">
@@ -22,14 +27,15 @@
         <p>どのような展開にする？</p>
         <input type="text" id="how_input" name="how_input" placeholder="助ける展開、胸糞展開、etc...">
         <br>
-        <input type="submit" value="小説を作成">
+        <input type="submit" class="create" value="小説を作成">
     </form>
 
-
+    
     {% if generated_novel %}
     <h2>生成された小説:</h2>
     <p>{{title}}</p>
     <p>{{ generated_novel }}</p>
     {% endif %}
+</div>
 </body>
 </html>
