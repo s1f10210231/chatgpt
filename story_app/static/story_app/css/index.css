@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 body {
     margin: 0px;
 }
@@ -6,7 +8,6 @@ header {
     top: 0px;
     left: 0px;
     height: 80px;
-    border-bottom: 3px solid #65ab88;
     background-color: rgba(226,236,225,0.58);
 }
 
@@ -45,3 +46,27 @@ footer {
     padding: 20px 0px;
     color: white;
 }
+
+.box11{
+    padding: 0.5em 1em;
+    color: #5d627b;
+    background: white;
+    border-top: solid 2.3px #5d627b;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    width: 23%;
+    float: left;
+    height: 100%;
+    margin: 20px 10px auto;
+    
+  }
+
+.first{
+    margin-left: 125px;
+}
+
+@media (max-width: 800px) {
+    .first{
+        margin-left: 20px;
+    }
+}
+

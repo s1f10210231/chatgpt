@@ -8,11 +8,6 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
 
-def index(request):
-    content = {
-        "novels": Novel.objects.all(),
-        }
-    return render(request,"story_app/index.html", content)
 
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
@@ -42,6 +37,16 @@ def title_create(title):
         max_tokens=30
     )
     return response['choices'][0]['message']['content']
+
+
+def index(request):
+
+    content = {
+        "novels": Novel.objects.all(),
+        }
+    return render(request,"story_app/index.html", content)
+
+
 
 def create(request):
     if request.method == 'POST':

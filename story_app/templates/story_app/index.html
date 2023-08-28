@@ -6,7 +6,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    
     <link rel="stylesheet" href="{% static 'story_app/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'story_app/css/contents.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <title>top</title>
 </head>
 <body>
@@ -25,23 +29,30 @@
     <div class="main">
         <div class="show-contents">
             <p class="show">作品一覧</p>
-            <div class="contens">
+            <div class="contents">
                 {% if novels %}
-                <ul>
-                    {% for novel in novels %}
-                    <li><a href="#">{{ novel.title }}</a></li>
-                    {% endfor %}
+                <ul class="tab">
+                {% for novel in novels %}
+                {% ifchanged novel.genre %}
+                <li><a href="#{{novel.genre}}">{{novel.genre}}</a></li>
+                {% endifchanged %}                {% endfor %}
                 </ul>
-                {% else %}
-                <p>小説がありません</p>
-                {% endif %}
+                {% for novel in novels %}
+                    <div id="{{novel.genre}}" class="area">                    
+                        <div class="box11">
+                            {{novel.genre}}
+                            <p><a href="#">{{ novel.title }}</a></p>
+                        </div>
+                    </div>
+                {% endfor %}
+
+            {% else %}
+            <p>小説がありません</p>
+            {% endif %}
             </div>
         </div>
     </div>
 
-
-    <footer>
-       <p class="footer-text">©xxx project</p> 
-    </footer>
 </body>
+<script src="{% static 'story_app/javascript/index.js'%}"></script>
 </html>
