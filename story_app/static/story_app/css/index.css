@@ -64,6 +64,13 @@ footer {
     margin-left: 125px;
 }
 
+.txt-limit {
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* 任意の行数を指定 */
+  }
+
 @media (max-width: 800px) {
     .first{
         margin-left: 20px;

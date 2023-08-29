@@ -1,22 +1,35 @@
 /*tabの形状*/
+
 .tab{
-    display: flex;
-    flex-wrap: wrap;
-    align-items: flex-start;
-    margin-bottom: 0px;
-    padding-left: 0px;
-  }
-  .tab li a{
-    display: block;
-    background:#ddd;
-    margin:0 2px;
-    padding:10px 20px;
-  }
-  /*liにactiveクラスがついた時の形状*/
-  .tab li.active a{
-    background:#fff;
-  }
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin-bottom: 0px;
+  padding-left: 0px;
+  overflow-x: scroll;
+  white-space: nowrap;
+}
+.wrapper{
+  display: inline-block;
+}
+.box{
+  display: inline-block;
+}
+.tab li a{
+  display: block;
+  background:#ddd;
+  margin:0px;
+  padding:10px 20px;
+}
+/*liにactiveクラスがついた時の形状*/
+.tab li.active a{
+  background:#fff;
   
+}
+
+
+
+
   
   /*エリアの表示非表示と形状*/
   .area {
@@ -43,8 +56,6 @@
     }
   }
   
-  
-  
   /*========= レイアウトのためのCSS ===============*/
   
   body{
@@ -65,6 +76,7 @@
     max-width: 960px;
     margin:30px auto;
     background:#fefefe;
+    height: 500px;
   }
   
   .box11 p{

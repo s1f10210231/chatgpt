@@ -31,3 +31,19 @@ $(window).on('load', function () {
 	var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
 	GethashID (hashName);//設定したタブの読み込み
 });
+
+// 重複するタブを非表示にする関数
+function hideDuplicateTabs() {
+    var genreTabs = document.querySelectorAll('.tab li');
+    var pastGenres = [];
+
+    for (var i = 0; i < genreTabs.length; i++) {
+        var currentGenre = genreTabs[i].textContent;
+
+        if (pastGenres.includes(currentGenre)) {
+            $(genreTabs[i]).hide(); // タブを非表示にする
+        } else {
+            pastGenres.push(currentGenre);
+        }
+    }
+}

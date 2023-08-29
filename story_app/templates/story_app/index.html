@@ -10,6 +10,7 @@
     
     <link rel="stylesheet" href="{% static 'story_app/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'story_app/css/contents.css' %}">
+    <script src="{% static 'story_app/javascript/index.js'%}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <title>top</title>
 </head>
@@ -29,28 +30,36 @@
     <div class="main">
         <div class="show-contents">
             <p class="show">作品一覧</p>
-            <div class="contents">
-                {% if novels %}
+        <div class="contents">
+            {% if genres_and_novels.items %}
                 <ul class="tab">
-                {% for novel in novels %}
-                {% ifchanged novel.genre %}
-                <li><a href="#{{novel.genre}}">{{novel.genre}}</a></li>
-                {% endifchanged %}                {% endfor %}
-                </ul>
-                {% for novel in novels %}
-                    <div id="{{novel.genre}}" class="area">                    
-                        <div class="box11">
-                            {{novel.genre}}
-                            <p><a href="#">{{ novel.title }}</a></p>
-                        </div>
+                    <div class="wrapper">
+                        {% for genre,novels in genres_and_novels.items %}
+                        <li class="box"><a href="#{{genre}}">{{genre}}</a></li>           
+                        {% endfor %}
                     </div>
-                {% endfor %}
-
+                </ul>
+            {% for genre, novels in genres_and_novels.items %}
+                    <div id="{{genre}}" class="area">  
+                        {%for novel in novels %}
+                        <div class="box11">
+                            {{genre}}                  
+                            <p class="txt-limit"><a href="#">{{ novel.title }}</a></p>
+                        </div>
+                        {% endfor %}
+                    </div>
+            {% endfor %}
+                <script>
+                    document.addEventListener('DOMContentLoaded', function () {
+                        hideDuplicateTabs();
+                    });               
+                </script>
             {% else %}
             <p>小説がありません</p>
             {% endif %}
             </div>
         </div>
+
     </div>
 
 </body>

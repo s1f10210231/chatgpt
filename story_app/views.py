@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import HttpResponse
 import openai
 from .models import Novel
+from collections import defaultdict
 
 openai.api_key = 'h6dzGnbQK82rizBXxHwruBY53JESXoPlUK8ydpL7Tb9om1SJlrVfyaZwPt2bUnVQab6_ParXOsla4RkO-yUnzLQ'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
@@ -40,13 +41,23 @@ def title_create(title):
 
 
 def index(request):
-
+    novels = Novel.objects.all()
+    
+    grouped_by_genre = defaultdict(list)
+    for novel in novels:
+        genre = novel.genre
+        grouped_by_genre[genre].append(novel)
+    
+    unique_by_genre = {}
+    for genre, novels in grouped_by_genre.items():
+        unique_by_genre[genre] = list(set(novels))
+    
     content = {
-        "novels": Novel.objects.all(),
-        }
-    return render(request,"story_app/index.html", content)
-
-
+        "genres_and_novels": unique_by_genre
+    }
+    
+    print(content["genres_and_novels"])
+    return render(request, "story_app/index.html", content)
 
 def create(request):
     if request.method == 'POST':
