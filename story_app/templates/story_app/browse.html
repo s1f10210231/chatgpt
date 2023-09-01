@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>閲覧</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'story_app/css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'story_app/css/contents.css' %}">
+  </head>
+  <body>
+    <h1>閲覧ページ</h1>
+    <button><a href="{% url 'story_app:index'%}">ホーム画面に戻る</a></button> 
+
+    <br>
+
+    <div class="main">
+      <div class="show-contents">
+          <p class="show">作品一覧</p>
+          </div>
+      </div>
+  </body>
+</html>
