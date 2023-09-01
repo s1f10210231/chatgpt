@@ -122,3 +122,6 @@ def create(request):
     else:
         content = {"novels": Novel.objects.all()}
         return render(request, 'story_app/create.html', content)
+    
+def browse(request):
+    return render(request, "story_app/browse.html")
