@@ -39,16 +39,23 @@
                         {% endfor %}
                     </div>
                 </ul>
-            {% for genre, novels in genres_and_novels.items %}
-                    <div id="{{genre}}" class="area">  
-                        {%for novel in novels %}
-                        <div class="box11">
-                            {{genre}}                  
-                            <p class="txt-limit"><a href="#">{{ novel.title }}</a></p>
-                        </div>
-                        {% endfor %}
-                    </div>
-            {% endfor %}
+{% for genre, novels in genres_and_novels.items %}
+<div id="{{genre}}" class="area">  
+    {% for novel in novels %}
+    <div class="box11">
+        {% if novel.image %}
+            <div class="image">
+                <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}">
+            </div>
+        {% endif %}
+        <strong>
+            <p class="txt-limit"><a href="#">{{ novel.title }}</a></p>
+        </strong>            
+    </div>
+    {% endfor %}
+</div>
+{% endfor %}
+
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
                         hideDuplicateTabs();

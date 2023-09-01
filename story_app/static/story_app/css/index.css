@@ -49,15 +49,14 @@ footer {
 
 .box11{
     padding: 0.5em 1em;
-    color: #5d627b;
+    color: #0c0c0d;
     background: white;
-    border-top: solid 2.3px #5d627b;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
     width: 23%;
     float: left;
     height: 100%;
     margin: 20px 10px auto;
-    
+    text-align: center;
   }
 
 .first{
@@ -74,6 +73,10 @@ footer {
 @media (max-width: 800px) {
     .first{
         margin-left: 20px;
+    }
+    .box11 img{
+        width: 110px;
+        height: 50px;
     }
 }
 

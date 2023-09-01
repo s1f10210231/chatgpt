@@ -1,13 +1,19 @@
 from django.shortcuts import render
-from django.http import HttpResponse
 import openai
-from .models import Novel
+import requests
+from .models import Novel,NovelImage
 from collections import defaultdict
 
-openai.api_key = 'h6dzGnbQK82rizBXxHwruBY53JESXoPlUK8ydpL7Tb9om1SJlrVfyaZwPt2bUnVQab6_ParXOsla4RkO-yUnzLQ'
+from django.core.files.base import ContentFile
+
+
+
+
+openai.api_key = '6sVanUSz6_O1xHHq5BxslXRVW8jFYx93uSzqNXSI7KHni7q8BViv1ec8YMS4Cfc2pUr4sH0gZPTtTPtVd70M7pA'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
+
 
 
 def generate_novel(genre,where,when,who,how):
@@ -28,6 +34,21 @@ def generate_novel(genre,where,when,who,how):
 
     return response['choices'][0]['message']['content']
 
+
+def translation(text):
+    response = openai.ChatCompletion.create(
+        model = 'gpt-3.5-turbo',
+        messages=[{"role": "system", "content": "you are the translator If you have Japanese text, you can convert it to English."},
+                    {"role":"user","content":f"Translate the {text} from Japanese to English.At that time, please display only the translated version."}
+
+                    
+                    ],
+        max_tokens=500
+
+    )
+
+    return response['choices'][0]['message']['content']
+
 def title_create(title):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
@@ -39,10 +60,10 @@ def title_create(title):
     )
     return response['choices'][0]['message']['content']
 
-
+# トップページ
 def index(request):
     novels = Novel.objects.all()
-    
+
     grouped_by_genre = defaultdict(list)
     for novel in novels:
         genre = novel.genre
@@ -51,14 +72,13 @@ def index(request):
     unique_by_genre = {}
     for genre, novels in grouped_by_genre.items():
         unique_by_genre[genre] = list(set(novels))
-    
+
     content = {
-        "genres_and_novels": unique_by_genre
+        "genres_and_novels": unique_by_genre,
     }
-    
-    print(content["genres_and_novels"])
     return render(request, "story_app/index.html", content)
 
+# 投稿ページ
 def create(request):
     if request.method == 'POST':
         input_genre = request.POST.get('genre_input', '')
@@ -76,18 +96,27 @@ def create(request):
 
 
         generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text)
-
         title_novel = title_create(generated_novel)
 
+        img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel)) 
+
+        response = requests.get(img_url)
+        if response.status_code == 200:
+            novel_image = NovelImage(image_text=title_novel)
+            novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
+        
+        novel_images = NovelImage.objects.all()
+
         if generated_novel:
-            novel = Novel(genre=input_genre, content=generated_novel,title=title_novel)
+            novel = Novel(genre=input_genre, content=generated_novel,title=title_novel,image=novel_image)
             novel.save()
- 
+    
 
         content = {
             "novels": Novel.objects.all(),
             'generated_novel': generated_novel,
-            'title':title_novel
+            'title':title_novel,
+            "images":novel_images,
         }
         return render(request, "story_app/create.html", content)
     else:
