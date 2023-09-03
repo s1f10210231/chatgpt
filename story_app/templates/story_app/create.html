@@ -1,10 +1,13 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="ja">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
+    <head>
+        <meta charset="UTF-8">
+        <title>Document</title>
+        <script src="{% static 'story_app/javascript/index.js'%}"></script>
     <link rel="stylesheet" href="{% static 'story_app/css/create.css' %}">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+
 </head>
 <body>
     <div class="main">    
@@ -14,23 +17,89 @@
 
     </div>
 
-    <form method="post" class="generate">
-        {% csrf_token %}
-        <p>ジャンル</p>
-        <input type="text" id="genre_input" name="genre_input" placeholder="恋愛、ファンタジー、ホラー、etc...">
-        <p>主人公は誰？</p>
-        <input type="text" id="who_input" name="who_input" placeholder="勇者、異能力者、探偵...">
-        <p>場所</p>
-        <input type="text" id="where_input" name="where_input" placeholder="学校、病院、etc...">
-        <p>いつ？</p>
-        <input type="text" id="when_input" name="when_input" placeholder="過去、現在、未来、etc...">
-        <p>どのような展開にする？</p>
-        <input type="text" id="how_input" name="how_input" placeholder="助ける展開、胸糞展開、etc...">
-        <br>
-        <input type="submit" class="create" value="小説を作成">
-    </form>
+    <ul class="tab">
+        <div class="wrapper">
+            <li class="box"><a href="#free">ユーザー手動入力</a></li>         
+            <li class="box"><a href="#auto">組み合わせ選択</a></li>             
+        </div>
+    </ul>
+    <div class="contents">
+    <div id="free" class="area">    
+        <form method="post" class="generate">
+            {% csrf_token %}
+            <p>ジャンル</p>
+            <input type="text" id="genre_input" name="genre_input" placeholder="恋愛、ファンタジー、ホラー、etc...">
+            <p>主人公は誰？</p>
+            <input type="text" id="who_input" name="who_input" placeholder="勇者、異能力者、探偵...">
+            <p>場所</p>
+            <input type="text" id="where_input" name="where_input" placeholder="学校、病院、etc...">
+            <p>いつ？</p>
+            <input type="text" id="when_input" name="when_input" placeholder="過去、現在、未来、etc...">
+            <p>どのような展開にする？</p>
+            <input type="text" id="how_input" name="how_input" placeholder="助ける展開、胸糞展開、etc...">
+            <br>
+            <input type="submit" class="create" value="小説を作成">
+        </form>
+    </div>
 
-    
+    <div id="auto" class="area">    
+        <form method="post" class="generate">
+            {% csrf_token %}
+            <p>ジャンル</p>
+            <div class="who">       
+            <input  class="genre" type="radio" name="genre" id="ラブコメ" value="ラブコメ"/>
+            <label for="ラブコメ">ラブコメ</label>
+            <input class="genre" type="radio" name="genre" id="ホラー" value="ホラー"/>
+            <label for="ホラー">ホラー</label>
+            <input class="genre" type="radio" name="genre" id="ファンタジー" value="ファンタジー" />
+            <label for="ファンタジー">ファンタジー</label>
+            </div>
+            <p>主人公は誰？</p>
+            <div class="who">       
+                <input  class="whose" type="radio" name="who" id="勇者" value="勇者"/>
+                <label for="勇者">勇者</label>
+                <input class="whose" type="radio" name="who" id="異能力者" value="異能力者"/>
+                <label for="異能力者">異能力者</label>
+                <input class="whose" type="radio" name="who" id="探偵" value="探偵"/>
+                <label for="探偵">探偵</label>
+            </div>
+            <p>場所</p>
+            <div class="who">       
+                <input  class="where" type="radio" name="where" id="学校" value="学校"/>
+                <label for="学校">学校</label>
+                <input class="where" type="radio" name="where" id="異世界" value="異世界"/>
+                <label for="異世界">異世界</label>
+                <input class="where" type="radio" name="where" id="都会" value="都会"/>
+                <label for="都会">都会</label>
+            </div>           
+            <p>いつ？</p>
+            <div class="who">       
+                <input  class="when" type="radio" name="when" id="未来" value="未来"/>
+                <label for="未来">未来</label>
+                <input class="when" type="radio" name="when" id="現在" value="現在"/>
+                <label for="現在">現在</label>
+                <input class="when" type="radio" name="when" id="過去" value="過去"/>
+                <label for="過去">過去</label>
+            </div>               
+            <p>どのような展開にする？</p>
+            <div class="who">       
+                <input  class="how" type="radio" name="how" id="泣ける展開" value="泣ける展開"/>
+                <label for="泣ける展開">泣ける展開</label>
+                <input class="how" type="radio" name="how" id="どんでん返しな展開" value="どんでん返しな展開"/>
+                <label for="どんでん返しな展開">どんでん返しな展開</label>
+                <input class="how" type="radio" name="how" id="助ける展開" value="助ける展開"/>
+                <label for="助ける展開">助ける展開</label>
+            </div>             
+            <br>
+            <input type="submit" class="create" value="小説を作成">
+        </form>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            hideDuplicateTabs();
+        });               
+    </script>
+</div>
     {% if generated_novel %}
     <h2>生成された小説:</h2>
     <p>{{title}}</p>
@@ -39,4 +108,6 @@
     {% endif %}
 </div>
 </body>
+        <script src="{% static 'story_app/javascript/index.js'%}"></script>
+
 </html>

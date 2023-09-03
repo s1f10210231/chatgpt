@@ -15,7 +15,7 @@
     color: white;
     border: none;
     padding: 10px 200px;
-    margin: 10px;
+    margin: 10px ;
     border-radius: 5px;
     font-size: 16px;
     cursor: pointer;
@@ -84,4 +84,105 @@
   .generate input[type="submit"]:active {
     background-color: #337257;
   }
+
+
   
+  .tab{
+    display: block;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    margin-bottom: 0px;
+    padding-left: 0px;
+    white-space: nowrap;
+  }
+
+  
+  .box{
+    display: inline-block;
+  }
+
+  .tab li a{
+    display: block;
+    background:#209e4ac5;
+    margin:0px;
+    padding:20px 126.5px;
+    color: #fff;
+    rotate: 20px;
+  }
+  /*liにactiveクラスがついた時の形状*/
+  .tab li.active a{
+
+    background:#f0efef;
+    color: #333;
+  }
+
+  
+  
+  /*エリアの表示非表示と形状*/
+  .area {
+    display: none;/*はじめは非表示*/
+    opacity: 0;/*透過0*/
+    background: #f0efef;
+    padding:50px 20px;
+  }
+  
+  /*areaにis-activeというクラスがついた時の形状*/
+  .area.is-active {
+      display: block;/*表示*/
+      animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
+      animation-duration: 2s;
+      animation-fill-mode: forwards;
+      margin: 0px 300px;
+    }
+    
+  @keyframes displayAnime{
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  
+  
+  ul{
+    list-style:none;
+  }
+  
+  a{
+    color:#333;
+    text-decoration: none;
+  }
+  
+  .contents{
+    width:100%;
+    background:#fefefe;
+    height: 500px;
+  }
+
+  
+  .area{
+    padding: 0px 20px; 
+    border-bottom: 1pxsolid #ddd;
+    align-items: flex-start;
+    
+  }
+  
+  
+  .who{
+    float: left;
+    background-color: #fff;
+    width: 100%;
+  }
+
+
+  @media (max-width: 800px) {
+    .tab li a{
+      padding:20px 100px;
+    }
+    .area.is-active {
+      margin: 0px 10px;
+    }
+
+}

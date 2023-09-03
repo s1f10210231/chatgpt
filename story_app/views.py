@@ -87,6 +87,11 @@ def create(request):
         input_when = request.POST.get('when_input', '')
         input_how = request.POST.get('how_input', '')
 
+        input_genre = request.POST.get('genre', '')
+        input_who = request.POST.get('whose', '')
+        input_where = request.POST.get('where', '')
+        input_when = request.POST.get('when', '')
+        input_how = request.POST.get('how', '')
 
         genre_text = "\n".join(input_genre)
         who_text = "\n".join(input_who)
