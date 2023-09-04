@@ -47,3 +47,19 @@ function hideDuplicateTabs() {
         }
     }
 }
+
+
+        // フォームを切り替える関数
+        function toggleForm(formId) {
+            const forms = ['userInputForm', 'autoInputForm'];
+
+            forms.forEach(form => {
+                const formElement = document.getElementById(form);
+                if (form === formId) {
+                    formElement.style.display = "block";
+                } else {
+                    formElement.style.display = "none";
+                }
+            });
+        }
+        toggleForm('userInputForm');
