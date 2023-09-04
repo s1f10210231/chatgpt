@@ -81,23 +81,38 @@ def index(request):
 # 投稿ページ
 def create(request):
     if request.method == 'POST':
-        input_genre = request.POST.get('genre_input', '')
-        input_who = request.POST.get('who_input', '')
-        input_where = request.POST.get('where_input', '')
-        input_when = request.POST.get('when_input', '')
-        input_how = request.POST.get('how_input', '')
+        
+        form_type = request.POST.get('formType', '')  # フォームの種類を取得
 
-        input_genre = request.POST.get('genre', '')
-        input_who = request.POST.get('whose', '')
-        input_where = request.POST.get('where', '')
-        input_when = request.POST.get('when', '')
-        input_how = request.POST.get('how', '')
+        if form_type == 'userInput':
+                # ユーザー手動入力フォームからのデータを取得
+                genre = request.POST.get('genre_input', '')
+                who = request.POST.get('who_input', '')
+                where = request.POST.get('where_input', '')
+                when = request.POST.get('when_input', '')
+                how = request.POST.get('how_input', '')
 
-        genre_text = "\n".join(input_genre)
-        who_text = "\n".join(input_who)
-        where_text = "\n".join(input_where)
-        when_text = "\n".join(input_when)
-        how_text = "\n".join(input_how)
+
+        elif form_type == 'autoInput':
+                # 組み合わせ選択フォームからのデータを取得
+                genre = request.POST.get('genre','')  # リストとして取得されるので getlist を使用
+                who = request.POST.get('whose', '')
+                where = request.POST.get('where', '')
+                when = request.POST.get('when', '')
+                how = request.POST.get('how', '')
+        else:
+                # ユーザー手動入力フォーム以外の場合、適切な初期値を設定
+                genre = ''
+                who = ''
+                where = ''
+                when = ''
+                how = ''
+                            
+        genre_text = "\n".join(genre)
+        who_text = "\n".join(who)
+        where_text = "\n".join(where)
+        when_text = "\n".join(when)
+        how_text = "\n".join(how)
 
 
         generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text)
@@ -113,7 +128,7 @@ def create(request):
         novel_images = NovelImage.objects.all()
 
         if generated_novel:
-            novel = Novel(genre=input_genre, content=generated_novel,title=title_novel,image=novel_image)
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
             novel.save()
     
 
