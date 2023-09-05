@@ -13,7 +13,7 @@
         <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}" class="cover-image">
         <div class="novel-info">
             <h1 class="novel-title">{{ novel.title }}</h1>
-            <p class="novel-content">{{ novel.content }}</p>
+            <p class="novel-content">{{ novel.content|linebreaksbr }}</p>
         </div>
     </div>
 </body>
