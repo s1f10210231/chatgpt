@@ -1,0 +1,20 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <title>{{ novel.title }}</title>
+    <link rel="stylesheet" href="{% static 'story_app/css/detail.css' %}">
+</head>
+<body>
+    <div class="container">
+        <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}" class="cover-image">
+        <div class="novel-info">
+            <h1 class="novel-title">{{ novel.title }}</h1>
+            <p class="novel-content">{{ novel.content|linebreaksbr }}</p>
+        </div>
+    </div>
+</body>
+</html>
