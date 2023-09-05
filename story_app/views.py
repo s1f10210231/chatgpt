@@ -25,14 +25,14 @@ def generate_novel(genre,where,when,who,how):
                     {"role": "user", "content": f"The hero's setting is a {who}"},
                     {"role": "user", "content": f"The time setting is {when}."},
                     {"role":"user","content":"Don't show the title."},
-                    {"role":"user","content":"Consider only the first episode."}
-
-                    
+                    {"role":"user","content":"Consider only the first episode."},
+                    {"role":"user","content":"Please do not include 'Chapter 1'or 'Episode 1' in the text as it is a complete story."},
+                    {"role":"user","content":"Please do not draw the ordered command directly here.Example: military hero etc."},
+                    {"role":"user","content":"Try to finish the story in 2000 characters or less"},
                     ],
-        max_tokens=500
+        max_tokens=2000
 
     )
-
     return response['choices'][0]['message']['content']
 
 
@@ -44,7 +44,7 @@ def translation(text):
 
                     
                     ],
-        max_tokens=500
+        max_tokens=2000
 
     )
 
