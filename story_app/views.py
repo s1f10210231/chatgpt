@@ -3,6 +3,7 @@ import openai
 import requests
 from .models import Novel,NovelImage
 from collections import defaultdict
+from django.http import Http404
 
 from django.core.files.base import ContentFile
 
@@ -145,3 +146,15 @@ def create(request):
     
 def browse(request):
     return render(request, "story_app/browse.html")
+
+
+def detail(request, novel_id):
+    try:
+        novel = Novel.objects.get(pk=novel_id)
+    except Novel.DoesNotExist:
+        raise Http404("Novel does not exist")
+    
+    context = {
+        "novel": novel,
+    }
+    return render(request, "story_app/detail.html", context)
