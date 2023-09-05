@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>{{ novel.title }}</title>
+    <link rel="stylesheet" href="{% static 'story_app/css/detail.css' %}">
 </head>
 <body>
-    <h1>{{ novel.title }}</h1>
-    <p>{{ novel.content }}</p>
+    <div class="container">
+        <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}" class="cover-image">
+        <div class="novel-info">
+            <h1 class="novel-title">{{ novel.title }}</h1>
+            <p class="novel-content">{{ novel.content }}</p>
+        </div>
+    </div>
 </body>
 </html>
