@@ -158,3 +158,7 @@ def detail(request, novel_id):
         "novel": novel,
     }
     return render(request, "story_app/detail.html", context)
+
+def display_novel(request, novel_id):
+    novel = Novel.objects.get(id=novel_id)
+    return render(request, 'story_app/display_novel.html', {'novel': novel})
