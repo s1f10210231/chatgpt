@@ -1,0 +1,17 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>作成された小説</title>
+        
+    </head>
+    <body>
+        {% if generated_novel %}
+        <h2>生成された小説:</h2>
+        <p>{{title}}</p>
+        <img src="{{ images.last.image.url }}" alt="{{ images.last.image_text }}">
+        <p>{{ generated_novel }}</p>
+        {% endif %}
+    </body>
+</html>
