@@ -16,13 +16,15 @@
             <h1 class="novel-title">{{ novel.title }}</h1>
             <p class="novel-content">{{ novel.content|linebreaksbr }}</p>
         </div>
-
-        <div>
-            <a href="{% url 'story_app:like' novel.id %}">
-                <i class="fas fa-heart">{{ novel.like }}</i>
-            </a>
-        </div>
     </div>
-    <button><a href="{% url 'story_app:index'%}">ホーム画面に戻る</a></button> 
+    <div class="button-container">
+        <a href="{% url 'story_app:like' novel.id %}" class="button like-button">
+            <i class="fas fa-heart"></i>
+            {{ novel.like }}
+        </a>
+        <a href="{% url 'story_app:index' %}" class="button return-button">
+            ホーム画面に戻る
+        </a>
+    </div>
 </body>
 </html>
