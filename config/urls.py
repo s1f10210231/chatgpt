@@ -18,10 +18,12 @@ from django.contrib import admin
 from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
+from story_app import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('story_app.urls')),
+    path('display_novel/<int:novel_id>/', views.display_novel, name='display_novel'),
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
