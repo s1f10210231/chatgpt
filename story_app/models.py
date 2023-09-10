@@ -17,6 +17,7 @@ class Novel(models.Model):
     content = models.TextField()
     title = models.TextField()
     image = models.ForeignKey(NovelImage, on_delete=models.SET_NULL, null=True, blank=True)
+    like = models.IntegerField(default=0)
 
   
     def __str__(self):
