@@ -7,6 +7,7 @@
         
     </head>
     <body>
+        <p><a href="{% url 'story_app:index'%}">ホーム</a></p>
         {% if generated_novel %}
         <h2>生成された小説:</h2>
         <p>{{title}}</p>
