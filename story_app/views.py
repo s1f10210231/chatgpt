@@ -20,16 +20,15 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
-        messages=[{"role": "system", "content": "You are a genius japanese novelist."},
+        messages=[{"role": "system", "content": "You are a genius Japanese short story writer who specializes in 1500 characters."},
                     {"role": "user", "content": f"Write a novel in the {genre} genre in japanese.And Please make a story in {where} with a development that {how}"},
                     {"role": "user", "content": f"The hero's setting is a {who}"},
                     {"role": "user", "content": f"The time setting is {when}."},
                     {"role":"user","content":"Don't show the title."},
-                    {"role":"user","content":"Consider only the first episode."}
-
+                    {"role":"user","content":"Consider only the first episode."},
                     
                     ],
-        max_tokens=500
+        max_tokens=1500
 
     )
 
