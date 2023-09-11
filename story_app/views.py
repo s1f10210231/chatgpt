@@ -177,3 +177,16 @@ def display_novel(request, novel_id):
 
     return render(request, 'story_app/display_novel.html', {'novel': novel, 'form': form})
 
+def like(request, novel_id):
+    try:
+        novel = Novel.objects.get(pk=novel_id)
+        novel.like += 1
+        novel.save()
+    except Novel.DoesNotExist:
+         raise Http404("Novel does not exist")
+    
+    context = {
+        "novel": novel,
+    }
+    
+    return render(request, "story_app/detail.html", context)

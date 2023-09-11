@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <title>{{ novel.title }}</title>
     <link rel="stylesheet" href="{% static 'story_app/css/detail.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
 </head>
 <body>
     <div class="container">
@@ -15,6 +16,15 @@
             <h1 class="novel-title">{{ novel.title }}</h1>
             <p class="novel-content">{{ novel.content|linebreaksbr }}</p>
         </div>
+    </div>
+    <div class="button-container">
+        <a href="{% url 'story_app:like' novel.id %}" class="button like-button">
+            <i class="fas fa-heart"></i>
+            {{ novel.like }}
+        </a>
+        <a href="{% url 'story_app:index' %}" class="button return-button">
+            ホーム画面に戻る
+        </a>
     </div>
 </body>
 </html>
