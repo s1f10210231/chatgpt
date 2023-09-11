@@ -8,6 +8,7 @@ databases:
 services:
   - type: web
     name: chatgpt
+    runtime: python3   # runtimeを指定
     env: python3
     region: singapore
     plan: free
@@ -24,6 +25,4 @@ services:
         generateValue: true
       - key: WEB_CONCURRENCY
         value: 4
-
-
     autoDeploy: true
