@@ -8,11 +8,12 @@
     </head>
     <body>
         <p><a href="{% url 'story_app:index'%}">ホーム</a></p>
-        {% if generated_novel %}
+        {% if novel %}
         <h2>生成された小説:</h2>
-        <p>{{title}}</p>
-        <img src="{{ images.last.image.url }}" alt="{{ images.last.image_text }}">
-        <p>{{ generated_novel }}</p>
+        <p>{{ novel.title }}</p>
+        <img src="{{ novel.image.image.url }}" alt="{{ novel.image.image_text }}">
+        <p>{{ novel.content }}</p>
         {% endif %}
+
     </body>
 </html>
