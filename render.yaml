@@ -14,7 +14,7 @@ services:
     branch: main
     healthCheckPath: /
     buildCommand: "./build.sh"
-    startCommand: "gunicorn chatgpt.wsgi --log-file -"
+    startCommand: "gunicorn chatgpt.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
