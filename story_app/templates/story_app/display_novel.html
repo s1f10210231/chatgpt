@@ -1,0 +1,19 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <title>作成された小説</title>
+        
+    </head>
+    <body>
+        <p><a href="{% url 'story_app:index'%}">ホーム</a></p>
+        {% if novel %}
+        <h2>生成された小説:</h2>
+        <p>{{ novel.title }}</p>
+        <img src="{{ novel.image.image.url }}" alt="{{ novel.image.image_text }}">
+        <p>{{ novel.content }}</p>
+        {% endif %}
+
+    </body>
+</html>

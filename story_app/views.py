@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 import openai
 import requests
 from .models import Novel,NovelImage
@@ -131,13 +131,19 @@ def create(request):
         if generated_novel:
             novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
             novel.save()
-    
+
+            # 作成された小説のIDを取得
+            novel_id = novel.id
+
+            # display_novel ページにリダイレクト
+            return redirect('display_novel', novel_id=novel_id)
 
         content = {
             "novels": Novel.objects.all(),
             'generated_novel': generated_novel,
             'title':title_novel,
             "images":novel_images,
+            "novel_id": novel_id,
         }
         return render(request, "story_app/create.html", content)
     else:
@@ -158,3 +164,7 @@ def detail(request, novel_id):
         "novel": novel,
     }
     return render(request, "story_app/detail.html", context)
+
+def display_novel(request, novel_id):
+    novel = Novel.objects.get(id=novel_id)
+    return render(request, 'story_app/display_novel.html', {'novel': novel})
