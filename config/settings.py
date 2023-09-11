@@ -137,7 +137,7 @@ SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 
 # ... 追記部分 ...
-DEBUG = True # デプロイ時、Falseに修正
+DEBUG = False # デプロイ時、Falseに修正
 # 画像を保存する先の指定
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
