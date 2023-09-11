@@ -6,6 +6,7 @@ from collections import defaultdict
 from django.http import Http404
 
 from django.core.files.base import ContentFile
+from .forms import NovelEditForm
 
 
 
@@ -167,4 +168,13 @@ def detail(request, novel_id):
 
 def display_novel(request, novel_id):
     novel = Novel.objects.get(id=novel_id)
-    return render(request, 'story_app/display_novel.html', {'novel': novel})
+
+    if request.method == 'POST':
+        form = NovelEditForm(request.POST, instance=novel)
+        if form.is_valid():
+            form.save()
+    else:
+        form = NovelEditForm(instance=novel)
+
+    return render(request, 'story_app/display_novel.html', {'novel': novel, 'form': form})
+
