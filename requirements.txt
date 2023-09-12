@@ -11,3 +11,7 @@ python-dotenv==0.21.0
 sqlparse==0.4.3
 static3==0.7.0
 whitenoise==6.2.0
+openai==0.28.0
+Pillow==10.0.0
+os
+requests==2.31.0
