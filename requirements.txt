@@ -13,5 +13,4 @@ static3==0.7.0
 whitenoise==6.2.0
 openai==0.28.0
 Pillow==9.5.0
-os
 requests==2.31.0
