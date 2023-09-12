@@ -15,7 +15,7 @@ services:
     branch: main
     healthCheckPath: /
     buildCommand: "./build.sh"
-    startCommand: "gunicorn story_app.wsgi:application"
+    startCommand: "gunicorn config.wsgi:application"
     envVars:
       - key: DATABASE_URL
         fromDatabase:
