@@ -123,8 +123,8 @@ if DEBUG==True:
     STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')
 else:
     STATIC_URL = '/static/'
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static/story_app'),)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles/story_app')    
 
 
 # 以下を追加
