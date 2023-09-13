@@ -8,8 +8,8 @@ databases:
 services:
   - type: web
     name: chatgpt
-    runtime: python3   # runtimeを指定
-    env: python3
+    runtime: python  # runtimeを指定
+    env: python
     region: singapore
     plan: free
     branch: main
