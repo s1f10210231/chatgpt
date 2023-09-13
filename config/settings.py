@@ -114,10 +114,17 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
+DEBUG = False # デプロイ時、Falseに修正
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+if DEBUG==True:
+
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static'),)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')
+else:
+    STATIC_URL = '/static/'
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')    
 
 
 # 以下を追加
@@ -136,7 +143,6 @@ SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 
 # ... 追記部分 ...
-DEBUG = False # デプロイ時、Falseに修正
 # 画像を保存する先の指定
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
