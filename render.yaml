@@ -2,7 +2,7 @@ databases:
   - name: mysite
     databaseName: mysite
     user: mysite
-    region: singapore
+    region: oregon
     plan: free
 
 services:
@@ -10,7 +10,7 @@ services:
     name: chatgpt
     runtime: python  # runtimeを指定
     env: python
-    region: singapore
+    region: oregon
     plan: free
     branch: main
     healthCheckPath: /
