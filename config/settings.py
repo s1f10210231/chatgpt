@@ -121,12 +121,17 @@ DEBUG = False # デプロイ時、Falseに修正
 if DEBUG==True:
 
     STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static'),)
-    STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')
+    STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')   
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 else:
     STATIC_URL = '/static/'
+    MEDIA_URL = '/media/'
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static/story_app'),)
     STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')    
+    MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 # 以下を追加
