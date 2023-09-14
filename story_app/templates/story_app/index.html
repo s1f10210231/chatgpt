@@ -45,7 +45,13 @@
     <div class="box11">
         {% if novel.image %}
             <div class="image">
-                <a href="{% url 'story_app:detail' novel.id %}"><img src="{{ novel.image.image.url }}" alt="{{ novel.title }}"></a>
+                <a href="{% url 'story_app:detail' novel.id %}">
+                    {%if novel.image.image.url %}
+                    <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}">
+                    {% else %}
+                    <img src="https://source.unsplash.com/180x90?{{ novel.title }}" alt="{{ novel.title }}">
+                    {% endif %}
+                </a>
             </div>
         {% endif %}
         <strong>
