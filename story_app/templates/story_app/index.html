@@ -46,11 +46,7 @@
         {% if novel.image %}
             <div class="image">
                 <a href="{% url 'story_app:detail' novel.id %}">
-                    {%if novel.image %}
-                    <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}">
-                    {% else %}
-                    <img src="https://source.unsplash.com/180x90?{{ novel.title }}" alt="{{ novel.title }}">
-                    {% endif %}
+                    <img src="{{ s3://myback3/novel_images/{{novel.title}}.jpg }}" alt="{{ novel.title }}">
                 </a>
             </div>
         {% endif %}
