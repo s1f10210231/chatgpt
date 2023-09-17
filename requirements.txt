@@ -16,4 +16,4 @@ Pillow==9.5.0
 requests==2.31.0
 wheel==0.41.2
 boto3==1.28.49
-Django-storages==3.2
+Django-storages==1.14
