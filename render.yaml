@@ -13,7 +13,6 @@ services:
     region: oregon
     plan: free
     branch: main
-    port: 10000
     healthCheckPath: /
     buildCommand: "./build.sh"
     startCommand: "gunicorn config.wsgi:application"
