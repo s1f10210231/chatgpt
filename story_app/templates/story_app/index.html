@@ -40,7 +40,6 @@
                 </ul>
 
 <div class="scroll">
-
 {% for genre, novels in genres_and_novels.items %}
 <div id="{{genre}}" class="area">  
     {% for novel in novels %}
@@ -60,26 +59,30 @@
     {% endfor %}
 </div>
 {% endfor %}
-
-                <script>
-                    document.addEventListener('DOMContentLoaded', function () {
-                        hideDuplicateTabs();
+</div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+            hideDuplicateTabs();
                     });               
-                </script>
+        </script>
             {% else %}
             <p>小説がありません</p>
             {% endif %}
             </div>
         </div>
-        <aside class="sidebar">
-            <div class="widget"></div>
-            <div class="widget widget--sticky"></div>
-          </aside>
+
 
     </div>
     <footer>
         <p class="footer-text">©xxx project</p> 
     </footer>
+    <script src="{% static 'story_app/javascript/index.js'%}"></script>
+        <script>   const limit = document.querySelector(".txt-limit");
+            const str = limit.textContent;
+            const len = 5; // 半角50字（全角約25字）
+            if (str.length > len) {
+              limit.textContent = str.substring(0, len) + "…";
+            }
+        </script>
 </body>
-<script src="{% static 'story_app/javascript/index.js'%}"></script>
 </html>

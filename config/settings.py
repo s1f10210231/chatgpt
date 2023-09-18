@@ -130,7 +130,7 @@ if DEBUG==True:
 
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static'),)
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static/story_app'),)
     STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')   
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -145,6 +145,8 @@ else:
     AWS_S3_REGION_NAME = 'ap-northeast-1'
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
+    from config.aws.conf import *
+
 
 
 
@@ -166,4 +168,3 @@ SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
 SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 
-from config.aws.conf import *
