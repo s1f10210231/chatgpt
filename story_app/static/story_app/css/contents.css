@@ -11,11 +11,9 @@
 }
 .wrapper{
   display: inline-block;
-  
 }
 .box{
   display: inline-block;
-  
 }
 .tab li a{
   display: block;
@@ -39,24 +37,15 @@
     display: none;/*はじめは非表示*/
     opacity: 0;/*透過0*/
     background: #fff;
+    padding:50px 20px;
   }
-  .scroll{
-    overflow-x: auto; /* 横方向のスクロールを有効にする */
-    white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
-    padding: 0px 20px;
-    margin: 10px;
-  }
-.scroll::-webkit-scrollbar {
-   width: 2px;
-}
-
+  
   /*areaにis-activeというクラスがついた時の形状*/
   .area.is-active {
-      display: flex;/*表示*/
+      display: block;/*表示*/
       animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
       animation-duration: 2s;
       animation-fill-mode: forwards;
-      flex-direction: row;
   }
   
   @keyframes displayAnime{
@@ -85,15 +74,15 @@
   
   .contents{
     width:100%;
-    margin-left:30px auto;
+    max-width: 960px;
+    margin:30px auto;
     background:#fefefe;
     height: 500px;
-    margin-block-end: 100px;
   }
 
   
   .area{
-    /* padding: 0px 20px; */
+    padding: 0px 20px; 
     border-bottom: 1pxsolid #ddd;
     align-items: flex-start;
     
