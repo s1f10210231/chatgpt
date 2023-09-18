@@ -7,7 +7,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    
     <link rel="stylesheet" href="{% static 'story_app/css/index.css' %}">
     <link rel="stylesheet" href="{% static 'story_app/css/contents.css' %}">
     <script src="{% static 'story_app/javascript/index.js'%}"></script>
@@ -39,7 +38,9 @@
                         {% endfor %}
                     </div>
                 </ul>
+
 <div class="scroll">
+
 {% for genre, novels in genres_and_novels.items %}
 <div id="{{genre}}" class="area">  
     {% for novel in novels %}
@@ -54,19 +55,11 @@
         <strong>
             <p class="txt-limit"><a href="{% url 'story_app:detail' novel.id %}">{{ novel.title }}</a></p>
         </strong> 
-        <script>   const limit = document.querySelector(".txt-limit");
-            const str = limit.textContent;
-            const len = 3; // 半角50字（全角約25字）
-            if (str.length > len) {
-              limit.textContent = str.substring(0, len) + "…";
-            }
-        </script>
         <i class="fas fa-heart">{{ novel.like }}</i>      
     </div>
     {% endfor %}
 </div>
 {% endfor %}
-</div>
 
                 <script>
                     document.addEventListener('DOMContentLoaded', function () {
@@ -82,6 +75,7 @@
             <div class="widget"></div>
             <div class="widget widget--sticky"></div>
           </aside>
+
     </div>
     <footer>
         <p class="footer-text">©xxx project</p> 

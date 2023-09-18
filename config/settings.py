@@ -24,6 +24,7 @@ env = environ.Env()
 env.read_env(os.path.join(BASE_DIR, ".env"))
 
 
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
@@ -129,7 +130,7 @@ if DEBUG==True:
 
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
-    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static/story_app'),)
+    STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static'),)
     STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')   
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
@@ -144,13 +145,13 @@ else:
     AWS_S3_REGION_NAME = 'ap-northeast-1'
     AWS_ACCESS_KEY_ID = env('AWS_ACCESS_KEY_ID')
     AWS_SECRET_ACCESS_KEY = env('AWS_SECRET_ACCESS_KEY')
-    from config.aws.conf import *
-
 
 
 
 # 以下を追加
+
 # STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
@@ -165,3 +166,4 @@ SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
 SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 
+from config.aws.conf import *
