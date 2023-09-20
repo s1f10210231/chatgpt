@@ -28,31 +28,34 @@
     </header>
     <div class="main">
         <div class="show-contents">
-            <p class="show">作品一覧</p>
-        <div class="contents">
-            {% if genres_and_novels.items %}
+            <!-- <div class="sub">
+                hello
+            </div> -->
+            <div class="contents">
+                <p class="show">ジャンルから探す</p>
+                {% if genres_and_novels.items %}
                 <ul class="tab">
                     <div class="wrapper">
-                        {% for genre,novels in genres_and_novels.items %}
-                        <li class="box"><a href="#{{genre}}">{{genre}}</a></li>           
-                        {% endfor %}
-                    </div>
-                </ul>
-
-<div class="scroll">
-{% for genre, novels in genres_and_novels.items %}
+                    {% for genre,novels in genres_and_novels.items %}
+                    <li class="box"><a href="#{{genre}}">{{genre}}</a></li>           
+                    {% endfor %}
+                </div>
+            </ul>
+            
+            <div class="scroll">
+                {% for genre, novels in genres_and_novels.items %}
 <div id="{{genre}}" class="area">  
     {% for novel in novels %}
     <div class="box11">
         {% if novel.image %}
-            <div class="image">
-                <a href="{% url 'story_app:detail' novel.id %}">
+        <div class="image">
+            <a href="{% url 'story_app:detail' novel.id %}">
                     <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}">
                 </a>
             </div>
-        {% endif %}
+            {% endif %}
         <strong>
-            <p class="txt-limit"><a href="{% url 'story_app:detail' novel.id %}">{{ novel.title }}</a></p>
+            <p class="txt-limit" id="novel{{novel.id}}"><a href="{% url 'story_app:detail' novel.id %}">{{ novel.title }}</a></p>
         </strong> 
         <i class="fas fa-heart">{{ novel.like }}</i>      
     </div>
@@ -60,29 +63,29 @@
 </div>
 {% endfor %}
 </div>
-        <script>
-            document.addEventListener('DOMContentLoaded', function () {
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
             hideDuplicateTabs();
                     });               
         </script>
             {% else %}
             <p>小説がありません</p>
             {% endif %}
-            </div>
         </div>
-
-
     </div>
-    <footer>
-        <p class="footer-text">©xxx project</p> 
-    </footer>
-    <script src="{% static 'story_app/javascript/index.js'%}"></script>
-        <script>   const limit = document.querySelector(".txt-limit");
-            const str = limit.textContent;
-            const len = 5; // 半角50字（全角約25字）
-            if (str.length > len) {
-              limit.textContent = str.substring(0, len) + "…";
-            }
-        </script>
+    
+    
+</div>
+<footer>
+    <p class="footer-text">©xxx project</p> 
+</footer>
+<script src="{% static 'story_app/javascript/index.js'%}"></script>
+<script>   const limit = document.querySelector("#novel{{novel.id}}");
+    const str = limit.textContent;
+    const len = 3; // 半角50字（全角約25字）
+    if (str.length > len) {
+      limit.textContent = str.substring(0, len) + "…";
+    }
+</script>
 </body>
 </html>

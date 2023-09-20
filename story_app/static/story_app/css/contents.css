@@ -1,14 +1,16 @@
 /*tabの形状*/
 
 .tab{
-  display: flex;
+  display: table-header-group;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin-bottom: 0px;
-  padding-left: 0px;
+  margin: 0px;
   overflow-x: auto;
   white-space: nowrap;
+  /* padding-left: 22px; */
+
 }
+
 .wrapper{
   display: inline-block;
 }
@@ -26,13 +28,16 @@
 .tab li.active a{
   background:#fff;
   color: #333;
+
 }
 
 .scroll{
   overflow-x: auto; /* 横方向のスクロールを有効にする */
   white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
-  padding: 0px 20px;
-  margin: 10px;
+  /* padding: 0px 20px; */
+  /* margin-left: 5px; */
+  height: 200px;
+  background-color: #fff;
 }
 .scroll::-webkit-scrollbar {
  width: 2px;
@@ -48,10 +53,11 @@
   
   /*areaにis-activeというクラスがついた時の形状*/
   .area.is-active {
-      display: flex;/*表示*/
+      display: inline-flex;/*表示*/
       animation-name: displayAnime;/*ふわっと表示させるためのアニメーション*/
       animation-duration: 2s;
       animation-fill-mode: forwards;
+      
   }
   
   @keyframes displayAnime{
@@ -80,11 +86,6 @@
   
   .contents{
     width:100%;
-    margin-left: 30px auto;
-    max-width: 960px;
-    margin:30px auto;
-    background:#fefefe;
-    height: 500px;
   }
 
   
@@ -94,3 +95,27 @@
     
   }
 
+
+
+
+  @media (max-width: 680px) {
+    .scroll{
+      margin: 0px;
+      padding: 0px;
+    }
+    .header-list li{
+      float: left;
+      padding: 20px 10px;
+    }
+    .show-contents{
+      display: block;
+    }
+    .contents{
+      width:100%;
+
+    }
+    .tab{
+      padding-left: 0px;
+    }
+   }
+   
