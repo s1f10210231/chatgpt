@@ -55,7 +55,7 @@
             </div>
             {% endif %}
         <strong>
-            <p class="txt-limit" id="novel{{novel.id}}"><a href="{% url 'story_app:detail' novel.id %}">{{ novel.title }}</a></p>
+            <p class="txt-limit"><a href="{% url 'story_app:detail' novel.id %}">{{ novel.title }}</a></p>
         </strong> 
         <i class="fas fa-heart">{{ novel.like }}</i>      
     </div>
@@ -80,7 +80,8 @@
     <p class="footer-text">©xxx project</p> 
 </footer>
 <script src="{% static 'story_app/javascript/index.js'%}"></script>
-<script>   const limit = document.querySelector("#novel{{novel.id}}");
+<script>   
+    const limit = document.querySelector(".txt-limit");
     const str = limit.textContent;
     const len = 3; // 半角50字（全角約25字）
     if (str.length > len) {

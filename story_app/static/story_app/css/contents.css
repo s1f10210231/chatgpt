@@ -36,7 +36,7 @@
   white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
   /* padding: 0px 20px; */
   /* margin-left: 5px; */
-  height: 200px;
+  height: 210px;
   background-color: #fff;
 }
 .scroll::-webkit-scrollbar {

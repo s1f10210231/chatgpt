@@ -57,14 +57,14 @@ footer {
 }
 
 .box11{
+    margin-left: 28px;
     padding: 10px;
     color: #0c0c0d;
     background: white;
     box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
-    width: 23%;
     float: left;
     height: 100%;
-    margin: 5px 30px auto;
+    margin-top: 5px;
     text-align: center;
     box-shadow:none;
   }
