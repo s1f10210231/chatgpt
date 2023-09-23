@@ -28,23 +28,23 @@
     </header>
     <div class="main">
         <div class="show-contents">
-            <!-- <div class="sub">
-                hello
-            </div> -->
-            <div class="contents">
-                <p class="show">ジャンルから探す</p>
-                {% if genres_and_novels.items %}
-                <ul class="tab">
+
+    <div class="contents">
+        <p class="show">ジャンルから探す</p>
+        {% if genres_and_novels.items %}
+        <div class="scrolltab">
+            <ul class="tab">
                     <div class="wrapper">
                     {% for genre,novels in genres_and_novels.items %}
                     <li class="box"><a href="#{{genre}}">{{genre}}</a></li>           
                     {% endfor %}
-                </div>
+                   </div>
             </ul>
+        </div>
             
-            <div class="scroll">
+    <div class="scroll">
                 {% for genre, novels in genres_and_novels.items %}
-<div id="{{genre}}" class="area">  
+    <div id="{{genre}}" class="area">  
     {% for novel in novels %}
     <div class="box11">
         {% if novel.image %}

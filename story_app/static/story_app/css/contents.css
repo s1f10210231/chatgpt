@@ -39,9 +39,16 @@
   height: 210px;
   background-color: #fff;
 }
-.scroll::-webkit-scrollbar {
- width: 2px;
+.scrolltab{
+  overflow-x: auto; /* 横方向のスクロールを有効にする */
+  scrollbar-face-color:#fff;
 }
+.scroll::-webkit-scrollbar {
+  display: none;
+}
+.scrolltab::-webkit-scrollbar {
+  display: none;
+ }
 
   /*エリアの表示非表示と形状*/
   .area {

@@ -64,7 +64,7 @@ def title_create(title):
 # トップページ
 def index(request):
     novels = Novel.objects.all()
-
+    novels_time= Novel.objects.all().order_by('-created_at')
     grouped_by_genre = defaultdict(list)
     for novel in novels:
         genre = novel.genre
@@ -76,6 +76,7 @@ def index(request):
 
     content = {
         "genres_and_novels": unique_by_genre,
+        "novel_time":novels_time,
     }
     return render(request, "story_app/index.html", content)
 
