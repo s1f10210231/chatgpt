@@ -11,10 +11,10 @@ header {
     left: 0px;
     width: 100%; /* ヘッダーの幅を100%に設定 */
     height: 80px;
-    background-color: rgba(226,236,225,0.58);
+    background-color: rgba(34, 94, 215, 0.58);
     z-index: 100; /* 他の要素よりも手前に表示 */
 }
-
+/* rgba(226,236,225,0.58); */
 .logo {
     float: left;
     margin-bottom: 0px;
