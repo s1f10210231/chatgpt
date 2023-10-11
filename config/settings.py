@@ -126,7 +126,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 DEBUG =False # デプロイ時、Falseに修正
 
-if DEBUG==True:
+if DEBUG==False:
 
     STATIC_URL = '/static/'
     MEDIA_URL = '/media/'
