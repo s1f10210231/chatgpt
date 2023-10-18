@@ -24,7 +24,9 @@ from django.views.static import serve  #追加
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('story_app.urls')),
+    path('story_app/', include('user.urls')),
     path('display_novel/<int:novel_id>/', views.display_novel, name='display_novel'),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG==True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
