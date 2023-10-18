@@ -21,12 +21,12 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
-        messages=[{"role": "system", "content": "あなたは1500文字を専門とする天才的な日本の短編作家です。"},
-                    {"role": "user", "content": f"日本語で{genre}のジャンルの小説を書いてください。そして、{where}で{how}という展開の物語を作ってください。"},
-                    {"role": "user", "content": f"主人公の設定は{who}です"},
-                    {"role": "user", "content": f"時間設定は {when} です。"},
-                    {"role":"user","content":"タイトルを表示しないでください"},
-                    {"role":"user","content":"お話は一つだけ考えてください。"},
+        messages=[{"role": "system", "content": "You are a genius Japanese short story writer who specializes in 1500 characters."},
+                    {"role": "user", "content": f"Write a novel in the {genre} genre in japanese.And Please make a story in {where} with a development that {how}"},
+                    {"role": "user", "content": f"The hero's setting is a {who}"},
+                    {"role": "user", "content": f"The time setting is {when}."},
+                    {"role":"user","content":"Don't show the title."},
+                    {"role":"user","content":"Consider only the first episode."},
                     
                     ],
         max_tokens=1500
@@ -39,8 +39,8 @@ def generate_novel(genre,where,when,who,how):
 def translation(text):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
-        messages=[{"role": "system", "content": "あなたは翻訳者です 日本語のテキストがある場合は、それを英語に変換できます。"},
-                    {"role":"user","content":f"{text}を日本語から英語に翻訳します。その際、翻訳版のみを表示してください。"}
+        messages=[{"role": "system", "content": "you are the translator If you have Japanese text, you can convert it to English."},
+                    {"role":"user","content":f"Translate the {text} from Japanese to English.At that time, please display only the translated version."}
 
                     
                     ],
@@ -53,8 +53,8 @@ def translation(text):
 def title_create(title):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
-        messages=[ {"role": "system", "content": "あなたは日本の天才小説家です"},
-                    {"role": "user", "content": f"タイトル{title}を日本語10文字以内で考えてください。"}
+        messages=[ {"role": "system", "content": "You are a genius japanese novelist."},
+                    {"role": "user", "content": f"Think of the title {title} in 10 Japanese characters or less."}
                     
                     ],
         max_tokens=30
