@@ -20,7 +20,7 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
-        model = 'gpt-4',
+        model = 'gpt-3.5-turbo',
         messages=[{"role": "system", "content": "あなたは1500文字を専門とする天才的な日本の短編作家です。"},
                     {"role": "user", "content": f'''
                     #制約条件
