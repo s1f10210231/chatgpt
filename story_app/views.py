@@ -11,7 +11,7 @@ from .forms import NovelEditForm
 
 
 
-openai.api_key = '6sVanUSz6_O1xHHq5BxslXRVW8jFYx93uSzqNXSI7KHni7q8BViv1ec8YMS4Cfc2pUr4sH0gZPTtTPtVd70M7pA'
+openai.api_key = '4b98eCipWEd7272fuiZlnZtjLaatiCWm2di3cdVoXxHskiyxuYdCr7-WS94fu0gbbmg5QheHOQVinJiZnwGCTgw'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
@@ -20,14 +20,16 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
-        model = 'gpt-3.5-turbo',
-        messages=[{"role": "system", "content": "You are a genius Japanese short story writer who specializes in 1500 characters."},
-                    {"role": "user", "content": f"Write a novel in the {genre} genre in japanese.And Please make a story in {where} with a development that {how}"},
-                    {"role": "user", "content": f"The hero's setting is a {who}"},
-                    {"role": "user", "content": f"The time setting is {when}."},
-                    {"role":"user","content":"Don't show the title."},
-                    {"role":"user","content":"Consider only the first episode."},
-                    
+        model = 'gpt-4',
+        messages=[{"role": "system", "content": "あなたは1500文字を専門とする天才的な日本の短編作家です。"},
+                    {"role": "user", "content": f'''
+                    #制約条件
+                    ・主人公の設定は{who}です。
+                    ・時間設定は {when} です。
+                    ・タイトルを表示しないでください。
+                    ・お話は一つだけ考えてください。
+                    ・日本語で{genre}のジャンルの小説を書いてください。そして、{where}で{how}という展開の物語を作ってください。
+                    '''},
                     ],
         max_tokens=1500
 
