@@ -12,4 +12,5 @@ urlpatterns = [
     path('browse/',views.browse,name='browse'),
     path('<int:novel_id>/detail/', views.detail, name='detail'),
     path('<int:novel_id>/like/', views.like, name='like'),
+    path('genre/<str:genre>/',views.genre_page,name='genre_page')
 ]

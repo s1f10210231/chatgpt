@@ -63,3 +63,5 @@ function hideDuplicateTabs() {
             });
         }
         toggleForm('userInputForm');
+
+
