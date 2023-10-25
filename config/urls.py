@@ -25,6 +25,8 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('story_app.urls')),
     path('display_novel/<int:novel_id>/', views.display_novel, name='display_novel'),
+    # path('accounts/', include('accounts.urls')),
+    path('accounts/', include('django.contrib.auth.urls')),
 ]
 if settings.DEBUG==True:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

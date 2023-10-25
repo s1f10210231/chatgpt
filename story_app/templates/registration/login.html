@@ -1,0 +1,19 @@
+{% extends './base.html' %}
+ 
+{% block content %}
+<h1>Djangoで作るログイン機能</h1>
+{% if user.is_authenticated %}<!-- ユーザーを認証していたら -->
+  <p>{{ user }} でログインしています</p>
+  <button onclick='location.href="{% url "logout" %}"'>ログアウト</button>
+{% else %}
+  <section>
+    <!-- ログイン用フォーム -->
+    <form action='{% url "login" %}' method='post'>
+      {% csrf_token %}
+      <input type='hidden' name='next' value='{{ next }}'/><!-- csrf_token用の隠し項目 -->
+      {{ form.as_p }}<!-- ログイン用の項目 -->
+      <button type='submit'>ログイン</button>
+    </form>
+  </section>
+{% endif %}
+{% endblock %}

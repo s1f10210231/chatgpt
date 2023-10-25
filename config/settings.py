@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'story_app',
     'storages',
+    'accounts.apps.AccountsConfig',
 
 ]
 
@@ -166,5 +167,8 @@ env.read_env(os.path.join(BASE_DIR, ".env"))
 SUPERUSER_NAME = env("SUPERUSER_NAME")
 SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
 SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
+
+
+LOGIN_REDIRECT_URL = '/'
 
 
