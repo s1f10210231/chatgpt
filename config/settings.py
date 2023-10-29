@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'story_app',
     'storages',
+    'accounts',
 
 ]
 
@@ -168,3 +169,4 @@ SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
 SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 
+AUTH_USER_MODEL = 'accounts.CustomUser'
