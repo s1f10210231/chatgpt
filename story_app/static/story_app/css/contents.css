@@ -46,15 +46,6 @@
   background-color: #fff;
   position: relative;
 }
-.scroll2{
-  overflow-x:hidden; /* 横方向のスクロールを有効にする */
-  white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
-  /* padding: 0px 20px; */
-  /* margin-left: 5px; */
-  height: 245px;
-  background-color: #fff;
-  position: relative;
-}
 .scrolltab{
   overflow-x: auto; /* 横方向のスクロールを有効にする */
   scrollbar-face-color:#fff;
@@ -118,12 +109,6 @@
     
   }
 
-  .area2{ 
-    border-bottom: 1pxsolid #ddd;
-    align-items: flex-start;
-    display: flex;
-    
-  }
 
 
 

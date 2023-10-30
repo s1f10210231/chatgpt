@@ -11,7 +11,7 @@ from .forms import NovelEditForm
 
 
 
-openai.api_key = '6sVanUSz6_O1xHHq5BxslXRVW8jFYx93uSzqNXSI7KHni7q8BViv1ec8YMS4Cfc2pUr4sH0gZPTtTPtVd70M7pA'
+openai.api_key = '4b98eCipWEd7272fuiZlnZtjLaatiCWm2di3cdVoXxHskiyxuYdCr7-WS94fu0gbbmg5QheHOQVinJiZnwGCTgw'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
@@ -214,7 +214,3 @@ def genre_page(request, genre):
  
 
     return render(request, 'story_app/genre_page.html',content )
-
-
-def time_page(request):
-    return render(request,'story_app/time_page.html',{'novel_time':Novel.objects.all().order_by('-created_at')})

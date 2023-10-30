@@ -2,7 +2,11 @@
 
 @charset "UTF-8";
 
-
+body {
+    margin: 0px;
+    position: relative;
+    
+}
 
 
 
@@ -56,7 +60,18 @@ footer {
     color: white;
 }
 
-
+.box11{
+    margin-left: 28px;
+    display: flex;
+    padding: 30px;
+    color: #0c0c0d;
+    background: white;
+    box-shadow: 0 3px 5px rgba(0, 0, 0, 0.22);
+    float: left;
+    /* height: 100%; */
+    text-align: center;
+    box-shadow:none;
+  }
 
 
   .box11 p{
@@ -76,7 +91,14 @@ img {
     border-radius: 10px;
     margin-left: 0px;
     }
-
+.txt-limit{
+    overflow: hidden;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1; /* 任意の行数を指定 */
+    margin:  0 0 0 20px;
+    text-align: left;
+  }
 
 @media (max-width: 800px) {
     .first{
@@ -184,6 +206,15 @@ img {
 
 
 
+header {
+    position: fixed; /* ヘッダーを固定位置に設定 */
+    top: 0px;
+    left: 0px;
+    width: 100%; /* ヘッダーの幅を100%に設定 */
+    height: 80px;
+    background-color: rgba(226,236,225,0.58);
+    z-index: 100; /* 他の要素よりも手前に表示 */
+}
 
 .logo {
     float: left;
@@ -195,6 +226,7 @@ img {
 .header-list li{
     list-style: none;
     float: right;
+    padding: 30px 40px;
 }
 
 .main {
@@ -226,7 +258,7 @@ footer {
 }
 
 .box11{
-    margin-left: 53px;
+    margin-left: 28px;
     position: relative;
     color: #0c0c0d;
     background: white;
@@ -247,7 +279,7 @@ footer {
 }
   .box11 p{
     font-size:1rem;
-    margin: 15px 59px 20px 27px;
+    margin: 15px 0 20px 0px;
   }
 
 .first{
@@ -279,10 +311,6 @@ img {
     .box11 p{
         font-size:1rem;
         margin: 15px 0px 20px 0px;
-      }
-      .box11{
-        width: 94%;
-        margin-left: 13px;
       }
     
 }
