@@ -25,6 +25,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('story_app.urls')),
     path('accounts/', include('django.contrib.auth.urls')),
+    path('accounts/', include('accounts.urls')),
     path('display_novel/<int:novel_id>/', views.display_novel, name='display_novel'),
 ]
 if settings.DEBUG==True:

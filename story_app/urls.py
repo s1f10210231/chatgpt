@@ -1,4 +1,4 @@
-from django.urls import path 
+from django.urls import path, include
 from story_app import views
 
 
@@ -13,4 +13,5 @@ urlpatterns = [
     path('browse/',views.browse,name='browse'),
     path('<int:novel_id>/detail/', views.detail, name='detail'),
     path('<int:novel_id>/like/', views.like, name='like'),
+    path('accounts/', include('accounts.urls', namespace='accounts')),
 ]
