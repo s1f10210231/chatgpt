@@ -11,7 +11,7 @@ from .forms import NovelEditForm
 
 
 
-openai.api_key = '4b98eCipWEd7272fuiZlnZtjLaatiCWm2di3cdVoXxHskiyxuYdCr7-WS94fu0gbbmg5QheHOQVinJiZnwGCTgw'
+openai.api_key = '6sVanUSz6_O1xHHq5BxslXRVW8jFYx93uSzqNXSI7KHni7q8BViv1ec8YMS4Cfc2pUr4sH0gZPTtTPtVd70M7pA'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
@@ -21,36 +21,24 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
-        messages=[{"role": "system", "content": """
-                   #命令書
-                   ・あなたは1500文字を専門とする天才的な日本の短編作家です。制約条件と小説の設定を絶対に守り命令文に従ってください"""},
+        messages=[{"role": "system", "content": "あなたは1500文字を専門とする天才的な日本の短編作家です。制約条件を絶対に守り命令文に従ってください"},
                     {"role": "user", "content": f'''
-                     
                     #制約条件
-                    ・一人称の物語
+                    ・主人公の設定は{who}とすること。
                     ・小説は日本語
+                    ・時間設定は {when} 。
                     ・タイトルを表示しない。
-                    ・本文のみを表示する。
                     ・お話は一つだけで、一話完結。次回には続かない。
                     ・起承転結
-                    ・本文のみを表示する。
-                     
-                    #小説の設定
                     ・ジャンルは{genre}。
-                    ・主人公の設定は{who}とすること。
-                    ・時間設定は {when} 。
                     ・場面設定は{where}。
                     ・{how}のような展開にすること。
-                    ・人物の名前はお任せします。
-
                     #命令文
-                    ・以上の制約条件を絶対に守り、三十段落程度の短編小説を書いてください。
-                    ・ベストセラーとなるようなファンタスティックな文章をお届けしてください。
-
+                    以上の制約条件を絶対に守り、三十段落程度の短編小説を書いてください。
 
                     #出力
 
-                    本文だけを表示する。
+                    --本文--
                     '''},
                     ],
         max_tokens=1500

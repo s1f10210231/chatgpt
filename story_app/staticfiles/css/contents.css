@@ -30,41 +30,18 @@
   color: #333;
 
 }
-.ex{
-  right: 0px;
-  margin-right:15px ;
- position: absolute;
- top: 200px;
-}
 
 .scroll{
-  overflow-x:hidden; /* 横方向のスクロールを有効にする */
-  white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
-  /* padding: 0px 20px; */
-  /* margin-left: 5px; */
-  height: 245px;
-  background-color: #fff;
-  position: relative;
-}
-.scroll2{
-  overflow-x:hidden; /* 横方向のスクロールを有効にする */
-  white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
-  /* padding: 0px 20px; */
-  /* margin-left: 5px; */
-  height: 245px;
-  background-color: #fff;
-  position: relative;
-}
-.scrolltab{
   overflow-x: auto; /* 横方向のスクロールを有効にする */
-  scrollbar-face-color:#fff;
+  white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
+  /* padding: 0px 20px; */
+  /* margin-left: 5px; */
+  height: 210px;
+  background-color: #fff;
 }
 .scroll::-webkit-scrollbar {
-  display: none;
+ width: 2px;
 }
-.scrolltab::-webkit-scrollbar {
-  display: none;
- }
 
   /*エリアの表示非表示と形状*/
   .area {
@@ -118,12 +95,6 @@
     
   }
 
-  .area2{ 
-    border-bottom: 1pxsolid #ddd;
-    align-items: flex-start;
-    display: flex;
-    
-  }
 
 
 
