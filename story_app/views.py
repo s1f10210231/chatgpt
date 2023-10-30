@@ -16,6 +16,8 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'story_app/home.html', {})
 
 
 def generate_novel(genre,where,when,who,how):

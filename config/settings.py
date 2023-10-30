@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'story_app',
     'storages',
+    'accounts',
 
 ]
 
@@ -124,7 +125,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-DEBUG =False # デプロイ時、Falseに修正
+DEBUG =True # デプロイ時、Falseに修正
 
 if DEBUG==True:
 
@@ -168,3 +169,6 @@ SUPERUSER_EMAIL = env("SUPERUSER_EMAIL")
 SUPERUSER_PASSWORD = env("SUPERUSER_PASSWORD")
 
 
+LOGIN_URL = 'login'
+LOGIN_REDIRECT_URL = 'story_app:index'
+LOGOUT_REDIRECT_URL = 'story_app:home'
