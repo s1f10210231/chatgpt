@@ -4,7 +4,7 @@ import requests
 from .models import Novel,NovelImage
 from collections import defaultdict
 from django.http import Http404
-from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
+
 from django.core.files.base import ContentFile
 from .forms import NovelEditForm
 
@@ -193,14 +193,3 @@ def like(request, novel_id):
     }
     
     return render(request, "story_app/detail.html", context)
-
-
-def genre_page(request, genre):
-    # ジャンルに基づいて小説をフィルタリング
-    novels = Novel.objects.filter(genre=genre)
-
-    content={
-        'novels': novels, 'genre': genre}
- 
-
-    return render(request, 'story_app/genre_page.html',content )
