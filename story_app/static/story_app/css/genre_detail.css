@@ -30,6 +30,7 @@ header {
 .header-list li{
     list-style: none;
     float: right;
+    padding: 30px 40px;
 }
 
 .main {
