@@ -21,14 +21,22 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
         model = 'gpt-3.5-turbo',
-        messages=[{"role": "system", "content": "あなたは1500文字を専門とする天才的な日本の短編作家です。"},
+        messages=[{"role": "system", "content": "あなたは1500文字を専門とする天才的な日本の短編作家です。制約条件を絶対に守り命令文に従ってください"},
                     {"role": "user", "content": f'''
                     #制約条件
-                    ・主人公の設定は{who}です。
-                    ・時間設定は {when} です。
-                    ・タイトルを表示しないでください。
-                    ・お話は一つだけ考えてください。
-                    ・日本語で{genre}のジャンルの小説を書いてください。そして、{where}で{how}という展開の物語を作ってください。
+                    ・主人公の設定は{who}とすること。
+                    ・小説は日本語
+                    ・時間設定は {when} 。
+                    ・タイトルを表示しない。
+                    ・お話は一つだけで、一話完結。次回には続かない。
+                    ・起承転結
+                    ・ジャンルは{genre}。
+                    ・場面設定は{where}。
+                    ・{how}のような展開にすること。
+                    #命令文
+                    以上の制約条件を絶対に守り、三十段落程度の短編小説を書いてください。
+                    #出力
+                    --本文--
                     '''},
                     ],
         max_tokens=1500
