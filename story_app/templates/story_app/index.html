@@ -35,7 +35,7 @@
                     <ul class="nav_list">
                         <li class="header-list-item"><a href="#">マイページ</a></li>
                         <li class="header-list-item"><a href="{% url 'story_app:create'%}">作成</a></li>
-                        <li class="header-list-item"><a href="{% url 'story_app:create'%}">ランキング</a></li>
+                        <li class="header-list-item"><a href="{% url 'story_app:rank'%}">ランキング</a></li>
                     </ul>
                   </nav>
              
@@ -83,8 +83,8 @@
 {% endfor %}
 </div>
 <p class="show">最新順</p>
-<div class="scroll">
-    <div class="area">  
+<div class="scroll2">
+    <div class="area2">  
         {% for novel in novel_time %}
         <div class="box11">
             {% if novel.image %}

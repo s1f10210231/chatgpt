@@ -29,7 +29,7 @@
      <p>最新順</p>
      <div class="box11">
         <div class="board">
-            {% for novel in novel_time %}
+            {% for novel in novels %}
            {% if novel.image %}
            <div class="image">
                <a href="{% url 'story_app:detail' novel.id %}">

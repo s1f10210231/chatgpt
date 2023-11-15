@@ -219,4 +219,6 @@ def time_page(request):
 
 
 def rank(request):
-    return render(request,'story_app/rank.html',{'novel_time':Novel.objects.all().order_by('-created_at')})
+    novels = Novel.objects.all().order_by('-like')  # お気に入りの数が多い順にソート
+
+    return render(request, 'story_app/rank.html', {'novels': novels})

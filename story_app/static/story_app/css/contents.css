@@ -61,7 +61,25 @@ margin-top: 182px;
     background: #fff;
 
   }
-  
+
+  .scroll2{
+    overflow-x:hidden; /* 横方向のスクロールを有効にする */
+    white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
+    /* padding: 0px 20px; */
+    /* margin-left: 5px; */
+    height: 217px;
+    background-color: #fff;
+    position: relative;
+  }
+
+
+  .area2{ 
+    border-bottom: 1pxsolid #ddd;
+    align-items: flex-start;
+    display: flex;
+
+  }
+
   /*areaにis-activeというクラスがついた時の形状*/
   .area.is-active {
       display: inline-flex;/*表示*/
@@ -133,3 +151,4 @@ margin-top: 182px;
       margin-left: 55%;
    }
   }
+
