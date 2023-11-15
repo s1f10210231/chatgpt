@@ -29,9 +29,10 @@
      <p>ランキング</p>
      <div class="box11">
         <div class="board">
-            {% for novel in novel_time %}
+            {% for novel in novels %}
            {% if novel.image %}
            <div class="image">
+            <p class="rank">{{ forloop.counter }}位</p>
                <a href="{% url 'story_app:detail' novel.id %}">
                        <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}">
                    </a>

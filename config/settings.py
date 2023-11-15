@@ -124,7 +124,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-DEBUG =False# デプロイ時、Falseに修正
+DEBUG =True # デプロイ時、Falseに修正
 
 if DEBUG==True:
 
