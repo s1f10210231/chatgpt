@@ -30,13 +30,17 @@
   color: #333;
 
 }
-
+.page{
+position: absolute;
+margin-top: 182px;
+}
 .scroll{
-  overflow-x: auto; /* 横方向のスクロールを有効にする */
+  overflow-x: hidden; /* 横方向のスクロールを有効にする */
   white-space: nowrap; /* オブジェクトを横一列に配置するために必要 */
   /* padding: 0px 20px; */
   /* margin-left: 5px; */
-  height: 210px;
+  height: 212px;
+  position: relative;
   background-color: #fff;
 }
 .scrolltab{
@@ -124,5 +128,8 @@
     .tab{
       padding-left: 0px;
     }
+    .nav_content {
+      width: 45%;
+      margin-left: 55%;
    }
-   
+  }
