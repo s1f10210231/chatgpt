@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 import openai
 import requests
 from .models import Novel,NovelImage
@@ -7,6 +7,7 @@ from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.files.base import ContentFile
 from .forms import NovelEditForm
+from .chatgpt import generate_response
 
 
 
@@ -177,12 +178,19 @@ def detail(request, novel_id):
     return render(request, "story_app/detail.html", context)
 
 def display_novel(request, novel_id):
-    novel = Novel.objects.get(id=novel_id)
+    novel = get_object_or_404(Novel, id=novel_id)
 
     if request.method == 'POST':
         form = NovelEditForm(request.POST, instance=novel)
         if form.is_valid():
             form.save()
+
+            edited_content = form.cleaned_data['content']
+            generated_content = generate_response(edited_content)
+            novel.content = generated_content
+            novel.save()
+
+            return redirect('display_novel', novel_id=novel_id)
     else:
         form = NovelEditForm(instance=novel)
 
