@@ -22,3 +22,4 @@ pandas==1.3.5
 matplotlib
 plotly
 scipy
+scikit-learn
