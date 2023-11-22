@@ -28,8 +28,16 @@
  <div class="main">
     <a href="{%url 'story_app:index' %}">
         <img class="back"  src="{%static 'story_app/images/back.png'%}" alt="{{ novel.title }}">
-    </a>
+    </a>           
+    {% if genre == "ミステリー" %}
     <img class="banar"  src="{%static 'story_app/images/Mis.png'%}" alt="{{ novel.title }}">
+    {% elif genre == "ラブコメ"%}
+    <img class="banar"  src="{%static 'story_app/images/lovestory.png'%}" alt="{{ novel.title }}">
+    {% elif genre == "ホラー"%}
+    <img class="banar"  src="{%static 'story_app/images/horror.png'%}" alt="{{ novel.title }}">
+    {% elif genre == "ファンタジー"%}
+    <img class="banar"  src="{%static 'story_app/images/Fantasy.png'%}" alt="{{ novel.title }}">
+    {% endif %}
     <div class="box11">
         <div class="board">
             {% for novel in novels %}

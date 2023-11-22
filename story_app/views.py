@@ -7,34 +7,41 @@ from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.files.base import ContentFile
 from .forms import NovelEditForm
+from openai.embeddings_utils import cosine_similarity
 
 
-
-
-openai.api_key = '4b98eCipWEd7272fuiZlnZtjLaatiCWm2di3cdVoXxHskiyxuYdCr7-WS94fu0gbbmg5QheHOQVinJiZnwGCTgw'
+openai.api_key = '6sVanUSz6_O1xHHq5BxslXRVW8jFYx93uSzqNXSI7KHni7q8BViv1ec8YMS4Cfc2pUr4sH0gZPTtTPtVd70M7pA'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'story_app/home.html', {})
-
+def sentence_to_vector(sentence):
+  res = openai.Embedding.create(
+        model='text-embedding-ada-002',
+        input=sentence
+    )
+ 
+  return res['data'][0]["embedding"]
 
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
-        model = 'gpt-3.5-turbo',
-        messages=[{"role": "system", "content": "あなたは1500文字を専門とする天才的な日本の短編作家です。制約条件を絶対に守り命令文に従ってください"},
+        model = 'gpt-4',
+        messages=[{"role": "system", "content": f"あなたは1500文字の{genre}専門とする天才的な日本の短編作家です。制約条件を絶対に守り命令文に従ってください"},
                     {"role": "user", "content": f'''
                     #制約条件
                     ・主人公の設定は{who}とすること。
+                    ・名前はあなたが決めてください。
                     ・小説は日本語
+                    ・星新一風でお願いします。
                     ・時間設定は {when} 。
                     ・タイトルを表示しない。
-                    ・お話は一つだけで、一話完結。次回には続かない。
                     ・起承転結
+                    ・展開を大袈裟にする。
                     ・ジャンルは{genre}。
                     ・場面設定は{where}。
                     ・{how}のような展開にすること。
+                    ・お話は一つだけだが、次回を期待させる。
+                    ・次回予告はしないでください
                     #命令文
                     以上の制約条件を絶対に守り、三十段落程度の短編小説を書いてください。
                     #出力
@@ -130,6 +137,7 @@ def create(request):
 
 
         generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text)
+        embedding = sentence_to_vector(generated_novel)
         title_novel = title_create(generated_novel)
 
         img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel)) 
@@ -142,7 +150,7 @@ def create(request):
         novel_images = NovelImage.objects.all()
 
         if generated_novel:
-            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image,embedding_content=embedding)
             novel.save()
 
             # 作成された小説のIDを取得
@@ -166,13 +174,28 @@ def create(request):
 def browse(request):
     return render(request, "story_app/browse.html")
 
-
+import pandas as pd
+import json
+import numpy as np
+import ast
 def detail(request, novel_id):
     try:
         novel = Novel.objects.get(pk=novel_id)
+        another_novel =[]
+        for i in Novel.objects.all():
+            if(i.title!=novel.title):
+                another_novel.append({
+                                      "title":i.title,
+                                      "embedding":i.embedding_content,
+                                      "relation":cosine_similarity(ast.literal_eval(i.embedding_content),ast.literal_eval(novel.embedding_content))
+                                      })
+
+
+
     except Novel.DoesNotExist:
         raise Http404("Novel does not exist")
-    
+
+        
     context = {
         "novel": novel,
     }
@@ -215,8 +238,7 @@ def genre_page(request, genre):
     # ジャンルに基づいて小説をフィルタリング
     novels = Novel.objects.filter(genre=genre)
 
-    content={
-        'novels': novels, 'genre': genre}
+    content={'novels': novels, 'genre': genre}
 
 
     return render(request, 'story_app/genre_page.html',content )
