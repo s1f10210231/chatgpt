@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <link rel="stylesheet" href="{% static 'story_app/css/index.css' %}">
-    <link rel="stylesheet" href="{% static 'story_app/css/nav.css' %}">
     <link rel="stylesheet" href="{% static 'story_app/css/contents.css' %}">
     <script src="{% static 'story_app/javascript/index.js'%}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
@@ -20,27 +19,13 @@
         <div class="header">
             <h2 class="logo">小説作成サイト</h2>
             <div class="header-list">
-    
-                <!-- ハンバーガーメニュー部分 -->
-                <div class="nav">
-              
-                  <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
-                  <input id="drawer_input" class="drawer_hidden" type="checkbox">
-              
-                  <!-- ハンバーガーアイコン -->
-                  <label for="drawer_input" class="drawer_open"><span></span></label>
-              
-                  <!-- メニュー -->
-                  <nav class="nav_content">
-                    <ul class="nav_list">
-                        <li class="header-list-item"><a href="#">マイページ</a></li>
-                        <li class="header-list-item"><a href="{% url 'story_app:create'%}">作成</a></li>
-                        <li class="header-list-item"><a href="{% url 'story_app:rank'%}">ランキング</a></li>
-                    </ul>
-                  </nav>
-             
-                </div>
-
+                <ul>
+                    {% if user.is_authenticated %}
+                    <li class="header-list-item"><a href="{% url 'logout' %}">ログアウト</a></li>
+                    <li class="header-list-item"><a href="#">{{ user.username }}</a></li>
+                    {% endif %}
+                    <li class="header-list-item"><a href="{% url 'story_app:create'%}">作成</a></li>
+                </ul>
             </div>
         </div>
     </header>
@@ -78,31 +63,8 @@
         <i class="fas fa-heart">{{ novel.like }}</i>      
     </div>
     {% endfor %}
-    <p class="page"><strong><a href="{% url 'story_app:genre_page' genre=genre %}">もっと見る</a>▶</strong></p>
 </div>
 {% endfor %}
-</div>
-<p class="show">最新順</p>
-<div class="scroll2">
-    <div class="area2">  
-        {% for novel in novel_time %}
-        <div class="box11">
-            {% if novel.image %}
-            <div class="image">
-                <a href="{% url 'story_app:detail' novel.id %}">
-                    <img src="{{ novel.image.image.url }}" alt="{{ novel.title }}">
-                </a>
-            </div>
-            {% endif %}
-            <strong>
-                <p class="txt-limit"><a href="{% url 'story_app:detail' novel.id %}">{{ novel.title }}</a></p>
-            </strong> 
-            <i class="fas fa-heart">{{ novel.like }}</i>      
-        </div>
-        {% endfor %}
-        <p class="page"><strong><a href="{% url 'story_app:time_page'  %}">もっと見る</a>▶</strong></p>
-
-    </div>
 </div>
 <script>
     document.addEventListener('DOMContentLoaded', function () {

@@ -16,6 +16,8 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
 
+def home(request):
+    return render(request, 'story_app/home.html', {})
 
 
 def generate_novel(genre,where,when,who,how):
@@ -191,15 +193,21 @@ def display_novel(request, novel_id):
 def like(request, novel_id):
     try:
         novel = Novel.objects.get(pk=novel_id)
-        novel.like += 1
-        novel.save()
+
+        if request.user in novel.liked_by.all():
+            novel.like -= 1
+            novel.save()
+            request.user.liked_novels.remove(novel)
+        else:
+            novel.like += 1
+            novel.save()
+            request.user.liked_novels.add(novel)
     except Novel.DoesNotExist:
-         raise Http404("Novel does not exist")
-    
+        raise Http404("Novel does not exist")
+
     context = {
         "novel": novel,
-    }
-    
+    }  
     return render(request, "story_app/detail.html", context)
 
 
@@ -222,3 +230,4 @@ def rank(request):
     novels = Novel.objects.all().order_by('-like')  # お気に入りの数が多い順にソート
 
     return render(request, 'story_app/rank.html', {'novels': novels})
+
