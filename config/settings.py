@@ -40,6 +40,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'chatgpt-mqox.onrender.com']
 # Application definition
 
 INSTALLED_APPS = [
+    # 'accounts.apps.AccountsConfig',  # 追加
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -125,7 +126,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-DEBUG =True # デプロイ時、Falseに修正
+DEBUG =False # デプロイ時、Falseに修正
 
 if DEBUG==True:
 
