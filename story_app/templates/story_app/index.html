@@ -16,8 +16,10 @@
 </head>
 <body>
     <header>
+        {% if user.is_authenticated %}
         <div class="header">
             <h2 class="logo">小説作成サイト</h2>
+            <p>こんにちは {{ user.username }}さん</p>
             <div class="header-list">
                 <!-- ハンバーガーメニュー部分 -->
                 <div class="nav">
@@ -27,10 +29,12 @@
                     <label for="drawer_input" class="drawer_open"><span></span></label>
                     <!-- メニュー -->
                     <nav class="nav_content">
-                      <ul class="nav_list">
-                          <li class="header-list-item"><a href="#">マイページ</a></li>
-                          <li class="header-list-item"><a href="{% url 'story_app:create'%}">作成</a></li>
-                          <li class="header-list-item"><a href="{% url 'story_app:rank'%}">ランキング</a></li>
+                        <ul class="nav_list">
+                            <li class="header-list-item"><a href="#">マイページ</a></li>
+                            <li class="header-list-item"><a href="{% url 'story_app:create'%}">作成</a></li>
+                            <li class="header-list-item"><a href="{% url 'story_app:rank'%}">ランキング</a></li>
+                            <li class="header-list-item"><a href="{% url 'logout' %}">ログアウト</a></li>
+                            
                       </ul>
                     </nav>
                 </div>
@@ -104,6 +108,12 @@
         </div>
     </div>
 </div>
+{% else %}
+    <p>アカウントをお持ちの方はログインしてください。</p>
+    <p>お持ちでない方はアカウントを作成してください。</p>
+    <p><a href="{% url 'login' %}">ログイン</a></p>
+    <p><a href="{% url 'accounts:signup' %}">アカウント作成</a></p>
+{% endif %}
 <footer>
     <p class="footer-text">©xxx project</p>
 </footer>

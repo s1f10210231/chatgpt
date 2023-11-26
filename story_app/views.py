@@ -15,8 +15,7 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
 
-def home(request):
-    return render(request, 'story_app/home.html', {})
+
 
 def sentence_to_vector(sentence):
   res = openai.Embedding.create(
