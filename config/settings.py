@@ -135,6 +135,33 @@ if DEBUG==True:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static/story_app'),)
     STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')   
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'handlers': {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+            'django.server': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'django.db.backends': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+        },
+    }
 
 else:
     STATIC_URL = '/static/'
@@ -176,30 +203,3 @@ LOGOUT_REDIRECT_URL = 'story_app:home'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
 
-
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': True,
-    'handlers': {
-        'console': {
-            'level': 'DEBUG',
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django': {
-            'handlers': ['console'],
-            'level': 'INFO',
-        },
-        'django.server': {
-            'handlers': ['console'],
-            'level': 'INFO',
-            'propagate': False,
-        },
-        'django.db.backends': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': False,
-        },
-    },
-}
