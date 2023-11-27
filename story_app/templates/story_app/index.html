@@ -108,15 +108,15 @@
         </div>
     </div>
 </div>
+<footer>
+    <p class="footer-text">©xxx project</p>
+</footer>
 {% else %}
     <p>アカウントをお持ちの方はログインしてください。</p>
     <p>お持ちでない方はアカウントを作成してください。</p>
     <p><a href="{% url 'login' %}">ログイン</a></p>
     <p><a href="{% url 'accounts:signup' %}">アカウント作成</a></p>
 {% endif %}
-<footer>
-    <p class="footer-text">©xxx project</p>
-</footer>
 <script src="{% static 'story_app/javascript/index.js'%}"></script>
 <script>
     const limit = document.querySelector(".txt-limit");
