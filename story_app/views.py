@@ -15,16 +15,6 @@ openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
 
-
-
-def sentence_to_vector(sentence):
-  res = openai.Embedding.create(
-        model='text-embedding-ada-002',
-        input=sentence
-    )
- 
-  return res['data'][0]["embedding"]
-
 def generate_novel(genre,where,when,who,how):
     response = openai.ChatCompletion.create(
         model = 'gpt-4',
@@ -51,9 +41,7 @@ def generate_novel(genre,where,when,who,how):
                     '''},
                     ],
         max_tokens=1500
-
     )
-
     return response['choices'][0]['message']['content']
 
 
@@ -62,13 +50,9 @@ def translation(text):
         model = 'gpt-3.5-turbo',
         messages=[{"role": "system", "content": "you are the translator If you have Japanese text, you can convert it to English."},
                     {"role":"user","content":f"Translate the {text} from Japanese to English.At that time, please display only the translated version."}
-
-                    
                     ],
         max_tokens=500
-
     )
-
     return response['choices'][0]['message']['content']
 
 def title_create(title):
@@ -76,7 +60,6 @@ def title_create(title):
         model = 'gpt-3.5-turbo',
         messages=[ {"role": "system", "content": "You are a genius japanese novelist."},
                     {"role": "user", "content": f"Think of the title {title} in 10 Japanese characters or less."}
-                    
                     ],
         max_tokens=30
     )
@@ -90,11 +73,9 @@ def index(request):
     for novel in novels:
         genre = novel.genre
         grouped_by_genre[genre].append(novel)
-    
     unique_by_genre = {}
     for genre, novels in grouped_by_genre.items():
         unique_by_genre[genre] = list(set(novels))
-
     content = {
         "genres_and_novels": unique_by_genre,
         "novel_time":novels_time,
@@ -104,9 +85,7 @@ def index(request):
 # 投稿ページ
 def create(request):
     if request.method == 'POST':
-        
         form_type = request.POST.get('formType', '')  # フォームの種類を取得
-
         if form_type == 'userInput':
                 # ユーザー手動入力フォームからのデータを取得
                 genre = request.POST.get('genre_input', '')
@@ -114,8 +93,6 @@ def create(request):
                 where = request.POST.get('where_input', '')
                 when = request.POST.get('when_input', '')
                 how = request.POST.get('how_input', '')
-
-
         elif form_type == 'autoInput':
                 # 組み合わせ選択フォームからのデータを取得
                 genre = request.POST.get('genre','')  # リストとして取得されるので getlist を使用
@@ -130,37 +107,27 @@ def create(request):
                 where = ''
                 when = ''
                 how = ''
-                            
         genre_text = "\n".join(genre)
         who_text = "\n".join(who)
         where_text = "\n".join(where)
         when_text = "\n".join(when)
         how_text = "\n".join(how)
-
-
         generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text)
         embedding = sentence_to_vector(generated_novel)
         title_novel = title_create(generated_novel)
-
-        img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel)) 
-
+        img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
         response = requests.get(img_url)
         if response.status_code == 200:
             novel_image = NovelImage(image_text=title_novel)
             novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
-        
         novel_images = NovelImage.objects.all()
-
         if generated_novel:
             novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image,embedding_content=embedding)
             novel.save()
-
             # 作成された小説のIDを取得
             novel_id = novel.id
-
             # display_novel ページにリダイレクト
             return redirect('display_novel', novel_id=novel_id)
-
         content = {
             "novels": Novel.objects.all(),
             'generated_novel': generated_novel,
@@ -176,28 +143,8 @@ def create(request):
 def browse(request):
     return render(request, "story_app/browse.html")
 
-import pandas as pd
-import json
-import numpy as np
-import ast
+
 def detail(request, novel_id):
-    try:
-        novel = Novel.objects.get(pk=novel_id)
-        another_novel =[]
-        for i in Novel.objects.all():
-            if(i.title!=novel.title):
-                another_novel.append({
-                                      "title":i.title,
-                                      "embedding":i.embedding_content,
-                                      "relation":cosine_similarity(ast.literal_eval(i.embedding_content),ast.literal_eval(novel.embedding_content))
-                                      })
-
-
-
-    except Novel.DoesNotExist:
-        raise Http404("Novel does not exist")
-
-        
     context = {
         "novel": novel,
     }
@@ -205,20 +152,17 @@ def detail(request, novel_id):
 
 def display_novel(request, novel_id):
     novel = Novel.objects.get(id=novel_id)
-
     if request.method == 'POST':
         form = NovelEditForm(request.POST, instance=novel)
         if form.is_valid():
             form.save()
     else:
         form = NovelEditForm(instance=novel)
-
     return render(request, 'story_app/display_novel.html', {'novel': novel, 'form': form})
 
 def like(request, novel_id):
     try:
         novel = Novel.objects.get(pk=novel_id)
-
         if request.user in novel.liked_by.all():
             novel.like -= 1
             novel.save()
@@ -229,20 +173,16 @@ def like(request, novel_id):
             request.user.liked_novels.add(novel)
     except Novel.DoesNotExist:
         raise Http404("Novel does not exist")
-
     context = {
         "novel": novel,
-    }  
+    }
     return render(request, "story_app/detail.html", context)
 
 
 def genre_page(request, genre):
     # ジャンルに基づいて小説をフィルタリング
     novels = Novel.objects.filter(genre=genre)
-
     content={'novels': novels, 'genre': genre}
-
-
     return render(request, 'story_app/genre_page.html',content )
 
 
@@ -252,6 +192,4 @@ def time_page(request):
 
 def rank(request):
     novels = Novel.objects.all().order_by('-like')  # お気に入りの数が多い順にソート
-
     return render(request, 'story_app/rank.html', {'novels': novels})
-
