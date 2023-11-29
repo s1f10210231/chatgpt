@@ -222,7 +222,6 @@ def create(request):
         when_text = "\n".join(when)
         how_text = "\n".join(how)
         generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text)
-        embedding = sentence_to_vector(generated_novel)
         title_novel = title_create(generated_novel)
         img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
         response = requests.get(img_url)
@@ -231,7 +230,7 @@ def create(request):
             novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
         novel_images = NovelImage.objects.all()
         if generated_novel:
-            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image,embedding_content=embedding)
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
             novel.save()
             # 作成された小説のIDを取得
             novel_id = novel.id
