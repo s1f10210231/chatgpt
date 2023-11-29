@@ -40,7 +40,8 @@ ALLOWED_HOSTS = ['127.0.0.1', 'chatgpt-mqox.onrender.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'django.contrib.admin',
+    # 'accounts.apps.AccountsConfig',  # 追加
+    # 'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
@@ -125,7 +126,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
-DEBUG =True # デプロイ時、Falseに修正
+DEBUG =False # デプロイ時、Falseに修正
 
 if DEBUG==True:
 
@@ -134,6 +135,33 @@ if DEBUG==True:
     STATICFILES_DIRS = (os.path.join(BASE_DIR, 'story_app/static/story_app'),)
     STATIC_ROOT = os.path.join(BASE_DIR, 'story_app/staticfiles')   
     MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+    
+    LOGGING = {
+        'version': 1,
+        'disable_existing_loggers': True,
+        'handlers': {
+            'console': {
+                'level': 'DEBUG',
+                'class': 'logging.StreamHandler',
+            },
+        },
+        'loggers': {
+            'django': {
+                'handlers': ['console'],
+                'level': 'INFO',
+            },
+            'django.server': {
+                'handlers': ['console'],
+                'level': 'INFO',
+                'propagate': False,
+            },
+            'django.db.backends': {
+                'handlers': ['console'],
+                'level': 'DEBUG',
+                'propagate': False,
+            },
+        },
+    }
 
 else:
     STATIC_URL = '/static/'
@@ -174,3 +202,4 @@ LOGIN_REDIRECT_URL = 'story_app:index'
 LOGOUT_REDIRECT_URL = 'story_app:home'
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
+
