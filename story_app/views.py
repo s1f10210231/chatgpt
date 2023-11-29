@@ -254,7 +254,7 @@ def browse(request):
 
 def detail(request, novel_id):
     context = {
-        "novel": novel,
+        "novel": Novel.objects.get(pk=novel_id),
     }
     return render(request, "story_app/detail.html", context)
 
