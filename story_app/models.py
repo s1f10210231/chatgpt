@@ -20,6 +20,7 @@ class Novel(models.Model):
     image = models.ForeignKey(NovelImage, on_delete=models.SET_NULL, null=True, blank=True)
     like = models.IntegerField(default=0)
     created_at = models.DateTimeField(default=timezone.now)  # 生成された時間を記録するフィールド
+    embedding_content =models.TextField()
 
   
     def __str__(self):

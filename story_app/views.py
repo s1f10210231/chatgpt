@@ -7,7 +7,7 @@ from django.http import Http404
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.core.files.base import ContentFile
 from .forms import NovelEditForm
-
+import json
 
 openai.api_key = '6sVanUSz6_O1xHHq5BxslXRVW8jFYx93uSzqNXSI7KHni7q8BViv1ec8YMS4Cfc2pUr4sH0gZPTtTPtVd70M7pA'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
@@ -195,6 +195,10 @@ def index(request):
 
 # 投稿ページ
 def create(request):
+    url = 'http://127.0.0.1:8000/'# 先ほどターミナルに出力されたURL
+    url2 = 'http://127.0.0.1:8000/relation'# 先ほどターミナルに出力されたURL
+
+
     if request.method == 'POST':
         form_type = request.POST.get('formType', '')  # フォームの種類を取得
         if form_type == 'userInput':
@@ -225,6 +229,11 @@ def create(request):
         how_text = "\n".join(how)
         generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text)
         title_novel = title_create(generated_novel)
+        data = {
+        "title":generated_novel,
+         }
+        res = requests.post(url,json.dumps(data))
+
         img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
         response = requests.get(img_url)
         if response.status_code == 200:
@@ -232,7 +241,7 @@ def create(request):
             novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
         novel_images = NovelImage.objects.all()
         if generated_novel:
-            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image,embedding_content=res)
             novel.save()
             # 作成された小説のIDを取得
             novel_id = novel.id
@@ -255,8 +264,23 @@ def browse(request):
 
 
 def detail(request, novel_id):
+    url = "http://127.0.0.1:8000/relation"
+    novel = Novel.objects.get(pk=novel_id)
+    another_novel =[]
+    for i in Novel.objects.all():
+        data = {
+            "context":i.embedding_content,
+            "another":novel.embedding_content,
+        }
+        if(i.title!=novel.title):
+            another_novel.append({
+                                    "title":i.title,
+                                    "embedding":i.embedding_content,
+                                    "relation":requests.post(url,json.dumps(data))
+                                    })
     context = {
         "novel": Novel.objects.get(pk=novel_id),
+        "reccomend":another_novel
     }
     return render(request, "story_app/detail.html", context)
 
