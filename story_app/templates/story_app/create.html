@@ -20,13 +20,18 @@
 
     <ul class="tab">
         <div class="wrapper">
-            <li class="box"><a href="#free" onclick="toggleForm('userInputForm')">ユーザー手動入力</a></li>         
-            <li class="box"><a href="#auto" onclick="toggleForm('autoInputForm')">組み合わせ選択</a></li>             
+            <li class="box"><a href="#free" onclick="toggleForm('userInputForm')">Free</a></li>         
+            <li class="box"><a href="#mistery" onclick="toggleForm('autoInputForm')">ミステリー</a></li>     
+            <li class="box"><a href="#fantasy" onclick="toggleForm('autoInputForm')">ファンタジー</a></li>             
+            <li class="box"><a href="#science" onclick="toggleForm('autoInputForm')">SF</a></li>             
+            <li class="box"><a href="#love" onclick="toggleForm('autoInputForm')">ラブコメ</a></li>             
+            <li class="box"><a href="#holor" onclick="toggleForm('autoInputForm')">ホラー</a></li>             
+            
         </div>
     </ul>
     <div class="contents">
-    <div id="userInputForm">
-    <div id="free" class="area">    
+        <div id="free" class="area">    
+        <div id="userInputForm">
         <form method="post" class="generate">
             {% csrf_token %}
             <input type="hidden" name="formType" value="userInput"> <!-- 追加 -->
@@ -46,7 +51,7 @@
         </div>
     </div>
 
-    <div id="auto" class="area">  
+    <div id="mistery" class="area">  
         <div id="autoInputForm">
             <form  method="post" class="generate">
                 {% csrf_token %}
@@ -59,6 +64,10 @@
                     <label for="ホラー">ホラー</label>
                     <input class="genre" type="radio" name="genre" id="ファンタジー" value="ファンタジー" required/>
                     <label for="ファンタジー">ファンタジー</label>
+                    <input class="genre" type="radio" name="genre" id="SF" value="SF" required/>
+                    <label for="SF">SF</label>
+                    <input class="genre" type="radio" name="genre" id="ミステリー" value="ミステリー" required/>
+                    <label for="ミステリー">ミステリー</label>
                 </div>
             <p>主人公は誰？</p>
             <div class="who">       
@@ -101,6 +110,242 @@
         </form>
     </div>
     </div>  
+    <div id="fantasy" class="area">  
+        <div id="autoInputForm">
+            <form  method="post" class="generate">
+                {% csrf_token %}
+                <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
+                <p>ジャンル</p>
+                <div class="who">       
+                    <input  class="genre" type="radio" name="genre" id="ラブコメ" value="ラブコメ" required/>
+                    <label for="ラブコメ">ラブコメ</label>
+                    <input class="genre" type="radio" name="genre" id="ホラー" value="ホラー" required/>
+                    <label for="ホラー">ホラー</label>
+                    <input class="genre" type="radio" name="genre" id="ファンタジー" value="ファンタジー" required/>
+                    <label for="ファンタジー">ファンタジー</label>
+                    <input class="genre" type="radio" name="genre" id="SF" value="SF" required/>
+                    <label for="SF">SF</label>
+                    <input class="genre" type="radio" name="genre" id="ミステリー" value="ミステリー" required/>
+                    <label for="ミステリー">ミステリー</label>
+                </div>
+            <p>主人公は誰？</p>
+            <div class="who">       
+                <input  class="whose" type="radio" name="who" id="勇者" value="勇者" required/>
+                <label for="勇者">勇者</label>
+                <input class="whose" type="radio" name="who" id="異能力者" value="異能力者" required/>
+                <label for="異能力者">異能力者</label>
+                <input class="whose" type="radio" name="who" id="探偵" value="探偵" required/>
+                <label for="探偵">探偵</label>
+            </div>
+            <p>場所</p>
+            <div class="who">       
+                <input  class="where" type="radio" name="where" id="学校" value="学校" required/>
+                <label for="学校">学校</label>
+                <input class="where" type="radio" name="where" id="異世界" value="異世界" required/>
+                <label for="異世界">異世界</label>
+                <input class="where" type="radio" name="where" id="都会" value="都会" required/>
+                <label for="都会">都会</label>
+            </div>           
+            <p>いつ？</p>
+            <div class="who">       
+                <input  class="when" type="radio" name="when" id="未来" value="未来" required/>
+                <label for="未来">未来</label>
+                <input class="when" type="radio" name="when" id="現在" value="現在" required/>
+                <label for="現在">現在</label>
+                <input class="when" type="radio" name="when" id="過去" value="過去" required/>
+                <label for="過去">過去</label>
+            </div>               
+            <p>どのような展開にする？</p>
+            <div class="who">       
+                <input  class="how" type="radio" name="how" id="泣ける展開" value="泣ける展開" required/>
+                <label for="泣ける展開">泣ける展開</label>
+                <input class="how" type="radio" name="how" id="どんでん返しな展開" value="どんでん返しな展開" required/>
+                <label for="どんでん返しな展開">どんでん返しな展開</label>
+                <input class="how" type="radio" name="how" id="助ける展開" value="助ける展開" required/>
+                <label for="助ける展開">助ける展開</label>
+            </div>             
+            <br>
+            <input type="submit" class="create" value="小説を作成">
+        </form>
+    </div>
+    </div> 
+    <div id="science" class="area">  
+        <div id="autoInputForm">
+            <form  method="post" class="generate">
+                {% csrf_token %}
+                <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
+                <p>ジャンル</p>
+                <div class="who">       
+                    <input  class="genre" type="radio" name="genre" id="ラブコメ" value="ラブコメ" required/>
+                    <label for="ラブコメ">ラブコメ</label>
+                    <input class="genre" type="radio" name="genre" id="ホラー" value="ホラー" required/>
+                    <label for="ホラー">ホラー</label>
+                    <input class="genre" type="radio" name="genre" id="ファンタジー" value="ファンタジー" required/>
+                    <label for="ファンタジー">ファンタジー</label>
+                    <input class="genre" type="radio" name="genre" id="SF" value="SF" required/>
+                    <label for="SF">SF</label>
+                    <input class="genre" type="radio" name="genre" id="ミステリー" value="ミステリー" required/>
+                    <label for="ミステリー">ミステリー</label>
+                </div>
+            <p>主人公は誰？</p>
+            <div class="who">       
+                <input  class="whose" type="radio" name="who" id="勇者" value="勇者" required/>
+                <label for="勇者">勇者</label>
+                <input class="whose" type="radio" name="who" id="異能力者" value="異能力者" required/>
+                <label for="異能力者">異能力者</label>
+                <input class="whose" type="radio" name="who" id="探偵" value="探偵" required/>
+                <label for="探偵">探偵</label>
+            </div>
+            <p>場所</p>
+            <div class="who">       
+                <input  class="where" type="radio" name="where" id="学校" value="学校" required/>
+                <label for="学校">学校</label>
+                <input class="where" type="radio" name="where" id="異世界" value="異世界" required/>
+                <label for="異世界">異世界</label>
+                <input class="where" type="radio" name="where" id="都会" value="都会" required/>
+                <label for="都会">都会</label>
+            </div>           
+            <p>いつ？</p>
+            <div class="who">       
+                <input  class="when" type="radio" name="when" id="未来" value="未来" required/>
+                <label for="未来">未来</label>
+                <input class="when" type="radio" name="when" id="現在" value="現在" required/>
+                <label for="現在">現在</label>
+                <input class="when" type="radio" name="when" id="過去" value="過去" required/>
+                <label for="過去">過去</label>
+            </div>               
+            <p>どのような展開にする？</p>
+            <div class="who">       
+                <input  class="how" type="radio" name="how" id="泣ける展開" value="泣ける展開" required/>
+                <label for="泣ける展開">泣ける展開</label>
+                <input class="how" type="radio" name="how" id="どんでん返しな展開" value="どんでん返しな展開" required/>
+                <label for="どんでん返しな展開">どんでん返しな展開</label>
+                <input class="how" type="radio" name="how" id="助ける展開" value="助ける展開" required/>
+                <label for="助ける展開">助ける展開</label>
+            </div>             
+            <br>
+            <input type="submit" class="create" value="小説を作成">
+        </form>
+    </div>
+    </div> 
+    <div id="love" class="area">  
+        <div id="autoInputForm">
+            <form  method="post" class="generate">
+                {% csrf_token %}
+                <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
+                <p>ジャンル</p>
+                <div class="who">       
+                    <input  class="genre" type="radio" name="genre" id="ラブコメ" value="ラブコメ" required/>
+                    <label for="ラブコメ">ラブコメ</label>
+                    <input class="genre" type="radio" name="genre" id="ホラー" value="ホラー" required/>
+                    <label for="ホラー">ホラー</label>
+                    <input class="genre" type="radio" name="genre" id="ファンタジー" value="ファンタジー" required/>
+                    <label for="ファンタジー">ファンタジー</label>
+                    <input class="genre" type="radio" name="genre" id="SF" value="SF" required/>
+                    <label for="SF">SF</label>
+                    <input class="genre" type="radio" name="genre" id="ミステリー" value="ミステリー" required/>
+                    <label for="ミステリー">ミステリー</label>
+                </div>
+            <p>主人公は誰？</p>
+            <div class="who">       
+                <input  class="whose" type="radio" name="who" id="勇者" value="勇者" required/>
+                <label for="勇者">勇者</label>
+                <input class="whose" type="radio" name="who" id="異能力者" value="異能力者" required/>
+                <label for="異能力者">異能力者</label>
+                <input class="whose" type="radio" name="who" id="探偵" value="探偵" required/>
+                <label for="探偵">探偵</label>
+            </div>
+            <p>場所</p>
+            <div class="who">       
+                <input  class="where" type="radio" name="where" id="学校" value="学校" required/>
+                <label for="学校">学校</label>
+                <input class="where" type="radio" name="where" id="異世界" value="異世界" required/>
+                <label for="異世界">異世界</label>
+                <input class="where" type="radio" name="where" id="都会" value="都会" required/>
+                <label for="都会">都会</label>
+            </div>           
+            <p>いつ？</p>
+            <div class="who">       
+                <input  class="when" type="radio" name="when" id="未来" value="未来" required/>
+                <label for="未来">未来</label>
+                <input class="when" type="radio" name="when" id="現在" value="現在" required/>
+                <label for="現在">現在</label>
+                <input class="when" type="radio" name="when" id="過去" value="過去" required/>
+                <label for="過去">過去</label>
+            </div>               
+            <p>どのような展開にする？</p>
+            <div class="who">       
+                <input  class="how" type="radio" name="how" id="泣ける展開" value="泣ける展開" required/>
+                <label for="泣ける展開">泣ける展開</label>
+                <input class="how" type="radio" name="how" id="どんでん返しな展開" value="どんでん返しな展開" required/>
+                <label for="どんでん返しな展開">どんでん返しな展開</label>
+                <input class="how" type="radio" name="how" id="助ける展開" value="助ける展開" required/>
+                <label for="助ける展開">助ける展開</label>
+            </div>             
+            <br>
+            <input type="submit" class="create" value="小説を作成">
+        </form>
+    </div>
+    </div> 
+    <div id="holor" class="area">  
+        <div id="autoInputForm">
+            <form  method="post" class="generate">
+                {% csrf_token %}
+                <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
+                <p>ジャンル</p>
+                <div class="who">       
+                    <input  class="genre" type="radio" name="genre" id="ラブコメ" value="ラブコメ" required/>
+                    <label for="ラブコメ">ラブコメ</label>
+                    <input class="genre" type="radio" name="genre" id="ホラー" value="ホラー" required/>
+                    <label for="ホラー">ホラー</label>
+                    <input class="genre" type="radio" name="genre" id="ファンタジー" value="ファンタジー" required/>
+                    <label for="ファンタジー">ファンタジー</label>
+                    <input class="genre" type="radio" name="genre" id="SF" value="SF" required/>
+                    <label for="SF">SF</label>
+                    <input class="genre" type="radio" name="genre" id="ミステリー" value="ミステリー" required/>
+                    <label for="ミステリー">ミステリー</label>
+                </div>
+            <p>主人公は誰？</p>
+            <div class="who">       
+                <input  class="whose" type="radio" name="who" id="勇者" value="勇者" required/>
+                <label for="勇者">勇者</label>
+                <input class="whose" type="radio" name="who" id="異能力者" value="異能力者" required/>
+                <label for="異能力者">異能力者</label>
+                <input class="whose" type="radio" name="who" id="探偵" value="探偵" required/>
+                <label for="探偵">探偵</label>
+            </div>
+            <p>場所</p>
+            <div class="who">       
+                <input  class="where" type="radio" name="where" id="学校" value="学校" required/>
+                <label for="学校">学校</label>
+                <input class="where" type="radio" name="where" id="異世界" value="異世界" required/>
+                <label for="異世界">異世界</label>
+                <input class="where" type="radio" name="where" id="都会" value="都会" required/>
+                <label for="都会">都会</label>
+            </div>           
+            <p>いつ？</p>
+            <div class="who">       
+                <input  class="when" type="radio" name="when" id="未来" value="未来" required/>
+                <label for="未来">未来</label>
+                <input class="when" type="radio" name="when" id="現在" value="現在" required/>
+                <label for="現在">現在</label>
+                <input class="when" type="radio" name="when" id="過去" value="過去" required/>
+                <label for="過去">過去</label>
+            </div>               
+            <p>どのような展開にする？</p>
+            <div class="who">       
+                <input  class="how" type="radio" name="how" id="泣ける展開" value="泣ける展開" required/>
+                <label for="泣ける展開">泣ける展開</label>
+                <input class="how" type="radio" name="how" id="どんでん返しな展開" value="どんでん返しな展開" required/>
+                <label for="どんでん返しな展開">どんでん返しな展開</label>
+                <input class="how" type="radio" name="how" id="助ける展開" value="助ける展開" required/>
+                <label for="助ける展開">助ける展開</label>
+            </div>             
+            <br>
+            <input type="submit" class="create" value="小説を作成">
+        </form>
+    </div>
+    </div> 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     hideDuplicateTabs();
