@@ -9,12 +9,12 @@ from django.core.files.base import ContentFile
 from .forms import NovelEditForm
 
 
-openai.api_key = '6sVanUSz6_O1xHHq5BxslXRVW8jFYx93uSzqNXSI7KHni7q8BViv1ec8YMS4Cfc2pUr4sH0gZPTtTPtVd70M7pA'
+openai.api_key = '4b98eCipWEd7272fuiZlnZtjLaatiCWm2di3cdVoXxHskiyxuYdCr7-WS94fu0gbbmg5QheHOQVinJiZnwGCTgw'
 openai.api_base = 'https://api.openai.iniad.org/api/v1'
 
 # Create your views here.
 
-def generate_novel(genre,where,when,who,how):
+def generate_novel(genre,where,when,who,how,key):
     if genre == "ホラー":
         message=[{"role": "system", "content": f"あなたは1500文字の{genre}専門とする天才的な日本のショートショート作家です。制約条件を絶対に守り命令文に従ってください"},
                     {"role": "user", "content": f'''
@@ -161,7 +161,7 @@ def generate_novel(genre,where,when,who,how):
                     '''},
                     ]
         
-    response = openai.ChatCompletion.create(model = 'gpt-4', messages=message, max_tokens=1500)
+    response = openai.ChatCompletion.create(model = 'gpt-3.5-turbo', messages=message, max_tokens=1500)
     return response['choices'][0]['message']['content']
 
 
@@ -213,6 +213,8 @@ def create(request):
                 where = request.POST.get('where_input', '')
                 when = request.POST.get('when_input', '')
                 how = request.POST.get('how_input', '')
+                how = request.POST.get('keyword', '')
+
         elif form_type == 'autoInput':
                 # 組み合わせ選択フォームからのデータを取得
                 genre = request.POST.get('genre','')  # リストとして取得されるので getlist を使用
@@ -220,6 +222,7 @@ def create(request):
                 where = request.POST.get('where', '')
                 when = request.POST.get('when', '')
                 how = request.POST.get('how', '')
+                how = request.POST.get('key', '')
         else:
                 # ユーザー手動入力フォーム以外の場合、適切な初期値を設定
                 genre = ''
@@ -227,12 +230,15 @@ def create(request):
                 where = ''
                 when = ''
                 how = ''
+                key = ''
         genre_text = "\n".join(genre)
         who_text = "\n".join(who)
         where_text = "\n".join(where)
         when_text = "\n".join(when)
         how_text = "\n".join(how)
-        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text)
+        key_text = "\n".join(key)
+
+        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text,key)
         title_novel = title_create(generated_novel)
         img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
         response = requests.get(img_url)
