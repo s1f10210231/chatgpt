@@ -41,7 +41,7 @@ ALLOWED_HOSTS = ['127.0.0.1', 'chatgpt-mqox.onrender.com']
 
 INSTALLED_APPS = [
     # 'accounts.apps.AccountsConfig',  # 追加
-    # 'django.contrib.admin',
+    'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
