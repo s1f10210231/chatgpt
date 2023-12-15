@@ -129,7 +129,6 @@
                 {% csrf_token %}
                 <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
                     <input class="genre" type="hidden" name="genre" id="genre" value="SF" required/>
-                    <label for="SF">SF</label>
                 <p>そこはどんな世界？</p>
                     <input  class="whose" type="text" name="whose" id="whose" placeholder="" required/>
                 <p>どんなシーン？</p>
@@ -151,9 +150,7 @@
                 {% csrf_token %}
                 <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
                 <p>ジャンル</p>
-                <div class="who">       
                     <input  class="genre" type="text" name="genre" id="genre" value="ラブコメ" required/>
-                </div>
                 <p>主人公は誰？</p>
                     <input  class="whose" type="text" name="who" id="whose" placeholder="高校生、おじさん" required/>
                 <p>場所</p>
@@ -174,12 +171,9 @@
             <form  method="post" class="generate">
                 {% csrf_token %}
                 <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
-                <div class="who">       
-                    <input class="genre" type="text" name="genre" id="ホラー" value="ホラー" required/>
-                </div>
+                    <input class="genre" type="hidden" name="genre" id="ホラー" value="ホラー" required/>
                 <p>主人公の設定</p>
                     <input  class="whose" type="text" name="who" id="whose" placeholder="勇者" required/>
-                </div>
                 <p>場所</p>
                     <input  class="where" type="text" name="where" id="where" placeholder="学校" required/>
                 <p>いつ？</p>
