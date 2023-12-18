@@ -231,7 +231,7 @@ def create(request):
                 where = request.POST.get('where_input', '')
                 when = request.POST.get('when_input', '')
                 how = request.POST.get('how_input', '')
-                how = request.POST.get('keyword', '')
+                key = request.POST.get('keyword', '')
 
         elif form_type == 'autoInput':
                 # 組み合わせ選択フォームからのデータを取得
@@ -240,7 +240,7 @@ def create(request):
                 where = request.POST.get('where', '')
                 when = request.POST.get('when', '')
                 how = request.POST.get('how', '')
-                how = request.POST.get('key', '')
+                key = request.POST.get('key', '')
         else:
                 # ユーザー手動入力フォーム以外の場合、適切な初期値を設定
                 genre = ''
@@ -256,7 +256,7 @@ def create(request):
         how_text = "\n".join(how)
         key_text = "\n".join(key)
 
-        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text,key)
+        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text,key_text)
         title_novel = title_create(generated_novel)
         img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
         response = requests.get(img_url)
