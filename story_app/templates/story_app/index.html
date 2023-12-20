@@ -18,7 +18,7 @@
     <header>
         {% if user.is_authenticated %}
         <div class="header">
-            <h2 class="logo">小説作成サイト</h2>
+            <h2 class="logo"><a href="{% url 'story_app:index'%}">小説作成サイト</a></h2>
             <p>こんにちは {{ user.username }}さん</p>
             <div class="header-list">
                 <!-- ハンバーガーメニュー部分 -->
