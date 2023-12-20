@@ -1,32 +1,54 @@
-/* styles.css */
+/* display_novel.css */
 
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Arial', sans-serif;
     margin: 20px;
+    padding: 0;
+    background-color: #f4f4f4;
 }
 
 a {
     text-decoration: none;
+    color: #0066cc;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 h2 {
     color: #333;
 }
 
-img {
-    max-width: 100%;
-    height: auto;
+p {
+    color: #666;
 }
 
 form {
     margin-top: 20px;
 }
 
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+textarea {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
 input[type="submit"] {
-    background-color: #65ab88;
+    background-color: #00cc30;
     color: #fff;
+    padding: 10px 15px;
     border: none;
-    padding: 10px 20px;
     cursor: pointer;
-    font-size: 16px;
+}
+
+input[type="submit"]:hover {
+    background-color: #00b512;
 }
