@@ -19,7 +19,6 @@
         {% if user.is_authenticated %}
         <div class="header">
             <h2 class="logo"><a href="{% url 'story_app:index'%}">小説作成サイト</a></h2>
-            <p>こんにちは {{ user.username }}さん</p>
             <div class="header-list">
                 <!-- ハンバーガーメニュー部分 -->
                 <div class="nav">
@@ -30,7 +29,7 @@
                     <!-- メニュー -->
                     <nav class="nav_content">
                         <ul class="nav_list">
-                            <li class="header-list-item"><a href="#">マイページ</a></li>
+                            <li class="header-list-item"><a href="#">{{ user.username }}</a></li>
                             <li class="header-list-item"><a href="{% url 'story_app:create'%}">作成</a></li>
                             <li class="header-list-item"><a href="{% url 'story_app:rank'%}">ランキング</a></li>
                             <li class="header-list-item"><a href="{% url 'logout' %}">ログアウト</a></li>
