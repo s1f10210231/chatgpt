@@ -22,10 +22,10 @@ header {
     margin-left: 20px;
 }
 
-.header-list li{
+.header-list li {
     list-style: none;
-    float: right;
-    padding: 30px 40px;
+    /* float: right; */
+    padding: 55px 66px 52px 7px;
 }
 
 .main {

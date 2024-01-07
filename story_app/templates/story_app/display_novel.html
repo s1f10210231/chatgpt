@@ -10,6 +10,21 @@
     <body>
         <p><a href="{% url 'story_app:index'%}">ホーム</a></p>
         {% if novel %}
+        <div class="boxs">
+            <a href="{% url 'story_app:genre_select'%}">
+                <div class="box one"></div>
+            </a>
+            <a href="{{ previous_url}}">
+                <div class="box two"></div>
+            </a>
+                <div class="box three"></div>
+        </div>
+        <div class="phase">
+            <p>PHASE 3</p>
+        </div>
+        <div class="context">
+            <h2>小説を編集しよう</h2>
+        </div>
         <h2>生成された小説:</h2>
         <p>{{ novel.title }}</p>
         <img src="{{ novel.image.image.url }}" alt="{{ novel.image.image_text }}">

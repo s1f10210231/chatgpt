@@ -16,4 +16,9 @@ urlpatterns = [
     path('time_page/',views.time_page,name='time_page'),
     path('rank/',views.rank,name='rank'),
     path('accounts/', include('accounts.urls', namespace='accounts')),
+    path('genre_select/',views.genre_select,name='genre_select'),
+    path('mystery/',views.mystery,name='mystery'),
+    path('fantasy/',views.fantasy,name='fantasy'),
+    path('lovestory/',views.lovestory,name='lovestory'),
+    path('horror/',views.horror,name='horror'),
 ]

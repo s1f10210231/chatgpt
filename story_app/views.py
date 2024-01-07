@@ -336,3 +336,250 @@ def time_page(request):
 def rank(request):
     novels = Novel.objects.all().order_by('-like')  # お気に入りの数が多い順にソート
     return render(request, 'story_app/rank.html', {'novels': novels})
+
+def genre_select(request):
+    return render(request,'story_app/genre_select.html')
+
+def mystery(request):
+    if request.method == 'POST':
+        form_type = request.POST.get('formType', '')  # フォームの種類を取得
+        if form_type == 'userInput':
+                # ユーザー手動入力フォームからのデータを取得
+                genre = request.POST.get('genre_input', '')
+                who = request.POST.get('who_input', '')
+                where = request.POST.get('where_input', '')
+                when = request.POST.get('when_input', '')
+                how = request.POST.get('how_input', '')
+                key = request.POST.get('keyword', '')
+
+        elif form_type == 'autoInput':
+                # 組み合わせ選択フォームからのデータを取得
+                genre = request.POST.get('genre','')  # リストとして取得されるので getlist を使用
+                who = request.POST.get('whose', '')
+                where = request.POST.get('where', '')
+                when = request.POST.get('when', '')
+                how = request.POST.get('how', '')
+                key = request.POST.get('key', '')
+        else:
+                # ユーザー手動入力フォーム以外の場合、適切な初期値を設定
+                genre = ''
+                who = ''
+                where = ''
+                when = ''
+                how = ''
+                key = ''
+        genre_text = "\n".join(genre)
+        who_text = "\n".join(who)
+        where_text = "\n".join(where)
+        when_text = "\n".join(when)
+        how_text = "\n".join(how)
+        key_text = "\n".join(key)
+
+        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text,key_text)
+        title_novel = title_create(generated_novel)
+        img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
+        response = requests.get(img_url)
+        if response.status_code == 200:
+            novel_image = NovelImage(image_text=title_novel)
+            novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
+        novel_images = NovelImage.objects.all()
+        if generated_novel:
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
+            novel.save()
+            # 作成された小説のIDを取得
+            novel_id = novel.id
+            # display_novel ページにリダイレクト
+            return redirect('display_novel', novel_id=novel_id)
+        content = {
+            "novels": Novel.objects.all(),
+            'generated_novel': generated_novel,
+            'title':title_novel,
+            "images":novel_images,
+            "novel_id": novel_id,
+        }
+        return render(request,'story_app/mystery.html',content)
+    else:
+        return render(request,'story_app/mystery.html')
+
+def fantasy(request):
+    if request.method == 'POST':
+        form_type = request.POST.get('formType', '')  # フォームの種類を取得
+        if form_type == 'userInput':
+                # ユーザー手動入力フォームからのデータを取得
+                genre = request.POST.get('genre_input', '')
+                who = request.POST.get('who_input', '')
+                where = request.POST.get('where_input', '')
+                when = request.POST.get('when_input', '')
+                how = request.POST.get('how_input', '')
+                key = request.POST.get('keyword', '')
+
+        elif form_type == 'autoInput':
+                # 組み合わせ選択フォームからのデータを取得
+                genre = request.POST.get('genre','')  # リストとして取得されるので getlist を使用
+                who = request.POST.get('whose', '')
+                where = request.POST.get('where', '')
+                when = request.POST.get('when', '')
+                how = request.POST.get('how', '')
+                key = request.POST.get('key', '')
+        else:
+                # ユーザー手動入力フォーム以外の場合、適切な初期値を設定
+                genre = ''
+                who = ''
+                where = ''
+                when = ''
+                how = ''
+                key = ''
+        genre_text = "\n".join(genre)
+        who_text = "\n".join(who)
+        where_text = "\n".join(where)
+        when_text = "\n".join(when)
+        how_text = "\n".join(how)
+        key_text = "\n".join(key)
+
+        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text,key_text)
+        title_novel = title_create(generated_novel)
+        img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
+        response = requests.get(img_url)
+        if response.status_code == 200:
+            novel_image = NovelImage(image_text=title_novel)
+            novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
+        novel_images = NovelImage.objects.all()
+        if generated_novel:
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
+            novel.save()
+            # 作成された小説のIDを取得
+            novel_id = novel.id
+            # display_novel ページにリダイレクト
+            return redirect('display_novel', novel_id=novel_id)
+        content = {
+            "novels": Novel.objects.all(),
+            'generated_novel': generated_novel,
+            'title':title_novel,
+            "images":novel_images,
+            "novel_id": novel_id,
+        }
+        return render(request,'story_app/fantasy.html',content)
+    else:
+        return render(request,'story_app/fantasy.html')
+
+def horror(request):
+    if request.method == 'POST':
+        form_type = request.POST.get('formType', '')  # フォームの種類を取得
+        if form_type == 'userInput':
+                # ユーザー手動入力フォームからのデータを取得
+                genre = request.POST.get('genre_input', '')
+                who = request.POST.get('who_input', '')
+                where = request.POST.get('where_input', '')
+                when = request.POST.get('when_input', '')
+                how = request.POST.get('how_input', '')
+                key = request.POST.get('keyword', '')
+
+        elif form_type == 'autoInput':
+                # 組み合わせ選択フォームからのデータを取得
+                genre = request.POST.get('genre','')  # リストとして取得されるので getlist を使用
+                who = request.POST.get('whose', '')
+                where = request.POST.get('where', '')
+                when = request.POST.get('when', '')
+                how = request.POST.get('how', '')
+                key = request.POST.get('key', '')
+        else:
+                # ユーザー手動入力フォーム以外の場合、適切な初期値を設定
+                genre = ''
+                who = ''
+                where = ''
+                when = ''
+                how = ''
+                key = ''
+        genre_text = "\n".join(genre)
+        who_text = "\n".join(who)
+        where_text = "\n".join(where)
+        when_text = "\n".join(when)
+        how_text = "\n".join(how)
+        key_text = "\n".join(key)
+
+        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text,key_text)
+        title_novel = title_create(generated_novel)
+        img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
+        response = requests.get(img_url)
+        if response.status_code == 200:
+            novel_image = NovelImage(image_text=title_novel)
+            novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
+        novel_images = NovelImage.objects.all()
+        if generated_novel:
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
+            novel.save()
+            # 作成された小説のIDを取得
+            novel_id = novel.id
+            # display_novel ページにリダイレクト
+            return redirect('display_novel', novel_id=novel_id)
+        content = {
+            "novels": Novel.objects.all(),
+            'generated_novel': generated_novel,
+            'title':title_novel,
+            "images":novel_images,
+            "novel_id": novel_id,
+        }
+        return render(request,'story_app/horror.html',content)
+    else:
+        return render(request,'story_app/horror.html')
+
+def lovestory(request):
+    if request.method == 'POST':
+        form_type = request.POST.get('formType', '')  # フォームの種類を取得
+        if form_type == 'userInput':
+                # ユーザー手動入力フォームからのデータを取得
+                genre = request.POST.get('genre_input', '')
+                who = request.POST.get('who_input', '')
+                where = request.POST.get('where_input', '')
+                when = request.POST.get('when_input', '')
+                how = request.POST.get('how_input', '')
+                key = request.POST.get('keyword', '')
+
+        elif form_type == 'autoInput':
+                # 組み合わせ選択フォームからのデータを取得
+                genre = request.POST.get('genre','')  # リストとして取得されるので getlist を使用
+                who = request.POST.get('whose', '')
+                where = request.POST.get('where', '')
+                when = request.POST.get('when', '')
+                how = request.POST.get('how', '')
+                key = request.POST.get('key', '')
+        else:
+                # ユーザー手動入力フォーム以外の場合、適切な初期値を設定
+                genre = ''
+                who = ''
+                where = ''
+                when = ''
+                how = ''
+                key = ''
+        genre_text = "\n".join(genre)
+        who_text = "\n".join(who)
+        where_text = "\n".join(where)
+        when_text = "\n".join(when)
+        how_text = "\n".join(how)
+        key_text = "\n".join(key)
+
+        generated_novel = generate_novel(genre_text,where_text,when_text,who_text,how_text,key_text)
+        title_novel = title_create(generated_novel)
+        img_url =  "https://source.unsplash.com/180x90?" + str(translation(title_novel))
+        response = requests.get(img_url)
+        if response.status_code == 200:
+            novel_image = NovelImage(image_text=title_novel)
+            novel_image.image.save(f'{title_novel}.jpg', ContentFile(response.content), save=True)
+        novel_images = NovelImage.objects.all()
+        if generated_novel:
+            novel = Novel(genre=genre, content=generated_novel,title=title_novel,image=novel_image)
+            novel.save()
+            # 作成された小説のIDを取得
+            novel_id = novel.id
+            # display_novel ページにリダイレクト
+            return redirect('display_novel', novel_id=novel_id)
+        content = {
+            "novels": Novel.objects.all(),
+            'generated_novel': generated_novel,
+            'title':title_novel,
+            "images":novel_images,
+            "novel_id": novel_id,
+        }
+        return render(request,'story_app/lovestory.html',content)
+    else:
+        return render(request,'story_app/lovestory.html')

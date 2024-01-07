@@ -1,0 +1,133 @@
+
+
+/*========= 背景動画設定のCSS ===============*/
+
+/*header設定*/
+#header{
+    position: relative;/*h1の中央寄せ配置の起点とするためのrelative*/
+    height: 100vh;/*高さを全画面にあわせる*/
+} 
+
+#video-area{
+    position: fixed;
+    z-index: -1;/*最背面に設定*/
+    top: 0;
+    right:0;
+    left:0;
+    bottom:0;
+    overflow: hidden;
+}
+
+#video {
+    /*天地中央配置*/
+    position: absolute;
+    z-index: -1;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    /*縦横幅指定*/
+    width: 177.77777778vh; /* 16:9 の幅→16 ÷ 9＝ 177.77% */
+    height: 56.25vw; /* 16:9の幅 → 9 ÷ 16 = 56.25% */
+    min-height: 100%;
+    min-width: 100%;
+}
+
+/*見出し設定*/
+h1{
+    /*要素の配置*/
+    position:absolute;
+    /*要素を天地中央寄せ*/
+    top: 50%;
+    left: 50%;
+    transform: translateY(-50%) translateX(-50%);
+    /*見た目の調整*/
+    color:#fff;
+    text-shadow: 0 0 15px #666;
+}
+body{
+    height: 100%;
+    margin: 0 auto;
+
+}
+.circle{
+    text-align: center;
+    position: relative;
+
+}
+.circle a{
+    overflow: hidden;
+}
+.circle a img:hover{
+    transform:scale(0.9);
+    opacity: 0.8;
+    transition: 0.3s;
+}
+.phase{
+    color: #19a363;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+.phase p{
+    margin-top: 0px;
+}
+.context{
+    color: #fff;
+    font-size: 50px;
+    font-family:serif;
+    text-align: center;
+
+}
+.box{
+    width: 20px;
+    height: 20px;
+    background: #f0f0f0;
+    border-radius: 50%;
+    float: left;
+    margin-top: 10px;
+    margin-inline: 15px;
+}
+.boxs{
+    display: inline-flex;
+    margin-left: 46%;
+
+}
+.box.one{
+    background-color :#1b93f5;
+}
+
+
+.triangle{
+    width: 0;
+    height:0;
+    border-left: 22px solid #111111;
+    border-top: 14px solid transparent;
+    border-bottom: 13px solid transparent;
+    position: absolute;
+    margin-left: 12px;
+    margin-top: 6px;
+}
+
+
+
+.box.four{
+    float: right;
+    background-color: #75c27b;
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+
+
+@media (max-width: 990px) {
+    .boxs{
+        margin-left: 41%;
+
+    }
+}
+
+.circle .hover-text{
+    position: absolute;
+    opacity: 0.8;
+
+}

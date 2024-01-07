@@ -52,3 +52,37 @@ input[type="submit"] {
 input[type="submit"]:hover {
     background-color: #00b512;
 }
+
+.phase{
+    color: #19a363;
+    font-size: 50px;
+    font-family: 'Courier New', Courier, monospace;
+    text-align: center;
+}
+.phase p{
+    margin-top: 0px;
+}
+.context{
+    color: #fff;
+    font-size: 50px;
+    font-family:serif;
+    text-align: center;
+
+}
+.box{
+    width: 20px;
+    height: 20px;
+    background: #1d1d1d;
+    border-radius: 50%;
+    float: left;
+    margin-top: 10px;
+    margin-inline: 15px;
+}
+.boxs{
+    display: inline-flex;
+    margin-left: 46%;
+
+}
+.box.three{
+    background-color :#1b93f5;
+}

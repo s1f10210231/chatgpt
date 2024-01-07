@@ -20,12 +20,15 @@
             <div class="header-list">
                 <ul>
                     <li class="header-list-item"><a href="#">マイページ</a></li>
-                    <li class="header-list-item"><a href="{% url 'story_app:create'%}">作成</a></li>
+                    <li class="header-list-item"><a href="{% url 'story_app:genre_select'%}">作成</a></li>
                 </ul>
             </div>
         </div>
     </header>
  <div class="main">
+    <a href="{%url 'story_app:index' %}">
+        <img class="back"  src="{%static 'story_app/images/back.png'%}" alt="{{ novel.title }}">
+    </a>  
      <p>ランキング</p>
      <div class="box11">
         <div class="board">
