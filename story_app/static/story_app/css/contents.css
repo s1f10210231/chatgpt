@@ -150,5 +150,14 @@ margin-top: 182px;
       width: 45%;
       margin-left: 55%;
    }
+   .header-list li {
+    /* margin-right: 0px; */
+    margin-top: 41px;
+    float: left;
+    text-align: justify;
+    padding: 14px 51px 14px 0px;
+}
+
+
   }
 

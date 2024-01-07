@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'story_app/css/genre_select.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+    <header id="header">
+        <div class="boxs">
+            <div class="box one"></div>
+            <div class="box two"></div>
+            <div class="box three"></div>
+        </div>
+        <div class="phase">
+            <p>PHASE 1</p>
+        </div>
+        <div class="context">
+            <h2>ジャンルを選ぼう</h2>
+        </div>
+        <div class="circle">
+            <a href="{% url 'story_app:mystery'%}"><img src="{%static 'story_app/images/Mis.png'%}" width="800px" height="250px" alt=""></a>
+            <a href="{% url 'story_app:fantasy'%}"><img src="{%static 'story_app/images/Fantasy.png'%}" width="800px" height="250px" alt=""></a>
+            <a href="{% url 'story_app:lovestory'%}"><img src="{%static 'story_app/images/lovestory.png'%}" width="800px" height="250px" alt=""></a>
+            <a href="{% url 'story_app:horror'%}"><img src="{%static 'story_app/images/horror.png'%}" width="800px" height="250px" alt=""></a>
+        </div>
+        <!-- <div class="box four">
+            <div class="triangle"></div>
+        </div> -->
+
+        
+
+
+        <div id="video-area">
+        <video id="video" poster="{%static 'story_app/images/gpt.png'%}" webkit-playsinline playsinline muted autoplay loop>
+        <!--
+        poster：動画ファイルが利用できない環境で代替表示される画像
+        webkit-playsinline：iOS 9までのSafari用インライン再生指定
+        playsinline：iOS 10以降のSafari用インライン再生指定
+        muted：音声をミュートさせる
+        autoplay：動画を自動再生させる
+        loop：動画をループさせる
+        controls：コントロールバーを表示する
+        -->
+        <source src="{%static 'story_app/images/network.mp4'%}" type="video/mp4">
+        <p>動画を再生できる環境ではありません。</p>
+        </video>
+        <!--/video-area--></div>
+        </header>
+
+</body>
+</html>

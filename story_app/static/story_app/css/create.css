@@ -82,6 +82,7 @@
   }
   
   .generate input[type="submit"]:active {
+    margin: 100px;
     background-color: #337257;
   }
 
