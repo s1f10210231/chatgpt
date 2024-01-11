@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <link rel="stylesheet" href="{% static 'story_app/css/genre_detail.css' %}">
+    <link rel="stylesheet" href="{% static 'story_app/css/nav.css' %}">
     <script src="{% static 'story_app/javascript/index.js'%}"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -18,10 +19,25 @@
         <div class="header">
             <h2 class="logo"><a href="{% url 'story_app:index'%}">小説作成サイト</a></h2>
             <div class="header-list">
-                <ul>
-                    <li class="header-list-item"><a href="#">マイページ</a></li>
-                    <li class="header-list-item"><a href="{% url 'story_app:genre_select'%}">作成</a></li>
-                </ul>
+                <!-- ハンバーガーメニュー部分 -->
+                <div class="nav">
+                    <!-- ハンバーガーメニューの表示・非表示を切り替えるチェックボックス -->
+                    <input id="drawer_input" class="drawer_hidden" type="checkbox">
+                    <!-- ハンバーガーアイコン -->
+                    <label for="drawer_input" class="drawer_open"><span></span></label>
+                    <!-- メニュー -->
+                    <nav class="nav_content">
+                        <ul class="nav_list">
+                            {% if user.is_authenticated %}
+                            <li class="header-list-item"><a href="#">{{ user.username }}</a></li>
+                            {% endif %}
+                            <li class="header-list-item"><a href="{% url 'story_app:genre_select'%}">作成</a></li>
+                            <li class="header-list-item"><a href="{% url 'story_app:rank'%}">ランキング</a></li>
+                            <li class="header-list-item"><a href="{% url 'logout' %}">ログアウト</a></li>
+                            
+                      </ul>
+                    </nav>
+                </div>
             </div>
         </div>
     </header>

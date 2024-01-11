@@ -16,7 +16,6 @@
 </head>
 <body>
     <header>
-        {% if user.is_authenticated %}
         <div class="header">
             <h2 class="logo"><a href="{% url 'story_app:index'%}">小説作成サイト</a></h2>
             <div class="header-list">
@@ -29,7 +28,9 @@
                     <!-- メニュー -->
                     <nav class="nav_content">
                         <ul class="nav_list">
+                            {% if user.is_authenticated %}
                             <li class="header-list-item"><a href="#">{{ user.username }}</a></li>
+                            {% endif %}
                             <li class="header-list-item"><a href="{% url 'story_app:genre_select'%}">作成</a></li>
                             <li class="header-list-item"><a href="{% url 'story_app:rank'%}">ランキング</a></li>
                             <li class="header-list-item"><a href="{% url 'logout' %}">ログアウト</a></li>
