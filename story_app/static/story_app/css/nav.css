@@ -17,7 +17,7 @@
 .drawer_open {
   display: flex;
   height: 60px;
-  width: 184%;
+  width: 194%;
   justify-content: center;
   align-items: center;
   position: absolute;
@@ -68,8 +68,8 @@
 /* メニューのデザイン*/
 .nav_content {
     height: 100%;
-    width: 11%;
-    margin-left: 89%;
+    width: 20%;
+    margin-left: 80%;
     position: fixed;
     top: 0;
     left: 100%; /* メニューを画面の外に飛ばす */

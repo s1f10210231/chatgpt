@@ -21,4 +21,8 @@ urlpatterns = [
     path('fantasy/',views.fantasy,name='fantasy'),
     path('lovestory/',views.lovestory,name='lovestory'),
     path('horror/',views.horror,name='horror'),
+    path('SF/',views.SF,name='SF'),
+    path('Free/',views.Free,name='Free'),
+
+
 ]

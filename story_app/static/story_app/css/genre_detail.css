@@ -321,7 +321,7 @@ img {
 
 .image {
     box-sizing: border-box;
-    width: calc(20% - 20px); /* 33.33% の幅に設定、20pxは要素の間のマージン */
+    width: calc(25% - 20px); /* 33.33% の幅に設定、20pxは要素の間のマージン */
     margin: 10px; /* 要素の間にマージンを設定 */
 }
 

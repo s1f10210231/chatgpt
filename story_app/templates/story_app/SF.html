@@ -1,0 +1,142 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'story_app/css/genre_select.css' %}">
+    <link rel="stylesheet" href="{% static 'story_app/css/mystery.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'story_app/css/4-2-4.css' %}">
+
+    <title>Document</title>
+</head>
+<body>
+    <div id="splash">
+        <div id="splash-logo">SF<br><img src="{%static 'story_app/images/SF.png'%}" width="800px" height="250px" alt=""><br><strong>しばらくお待ちください・・・・</strong></div>
+        <!--/splash--></div>
+        <div class="splashbg"></div><!---画面遷移用-->
+        <div id="container">
+        <header id="header">
+            <div class="boxs">
+                <a href="{% url 'story_app:genre_select'%}">
+                    <div class="box one"></div>
+                </a>
+                <a href="{% url 'story_app:lovestory'%}">
+                    <div class="box two"></div>
+                </a>
+                    <div class="box three"></div>
+                </div>
+            <div class="phase">
+                <p>PHASE 2</p>
+            </div>
+            <div class="context">
+                <h2>SFプロンプト生成</h2>
+            </div>
+            <div class="contents">
+
+                <div id="science" class="area">  
+                    <div id="autoInputForm">
+                        <form  method="post" class="generate">
+                            {% csrf_token %}
+                            <input type="hidden" name="formType" value="autoInput"> <!-- 追加 -->
+                                <input class="genre" type="hidden" name="genre" id="genre" value="SF" required/>
+                            <p>そこはどんな世界？</p>
+                                <input  class="whose" type="text" name="whose" id="whose" placeholder="" required/>
+                            <p>どんなシーン？</p>
+                                <input  class="where" type="text" name="where" id="where" placeholder="学校" required/>
+                            <p>時代設定？</p>
+                                <input  class="when" type="text" name="when" id="when" placeholder="未来" required/>
+                            <p>どのような内容にする？</p>
+                                <input  class="how" type="text" name="how" id="how" placeholder="不思議な内容" required/>
+                            <p>キーワード</p>
+                            <input  class="key" type="text" name="key"  placeholder="入れたいワードを入力" required/>         
+                            <br>
+                            <input type="submit" class="create" value="小説を作成">
+                        </form>
+                    </div>
+                </div> 
+        </div>
+
+            
+            
+            
+            
+            <div id="video-area">
+                <video id="video" poster="{%static 'story_app/images/gpt.png'%}" webkit-playsinline playsinline muted autoplay loop>
+                    <!--
+                        poster：動画ファイルが利用できない環境で代替表示される画像
+                        webkit-playsinline：iOS 9までのSafari用インライン再生指定
+                        playsinline：iOS 10以降のSafari用インライン再生指定
+                        muted：音声をミュートさせる
+                        autoplay：動画を自動再生させる
+                        loop：動画をループさせる
+                        controls：コントロールバーを表示する
+                    -->
+                    <source src="{%static 'story_app/images/network.mp4'%}" type="video/mp4">
+                    <p>動画を再生できる環境ではありません。</p>
+                </video>
+                <!--/video-area--></div>
+            </header>
+            <!--/container--></div>
+            <script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+            <!--自作のJS-->
+            <script src="{%static 'story_app/javascript/4-2-4.js'%}"></script>          
+            
+            
+<script>
+    $('form').on('submit', function(){
+    let insertHtml=`
+    <!-- loading -->
+    <div id="loading"">
+        <div class="cv-spinner">
+            <span class="spinner"></span>
+            <p>小説を書いています</p>
+        </div>
+    </div>
+    <!-- loading -->
+    `
+    let insertCSS=`
+    <style>
+        #loading{
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 999;
+            width: 100%;
+            height:100%;
+            background: rgba(0,0,0,0.6);
+        }
+        #loading .cv-spinner {
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #loading .spinner {
+            width: 40px;
+            height: 40px;
+            border: 4px #ddd solid;
+            border-top: 4px #999 solid;
+            border-radius: 50%;
+            animation: sp-anime 0.8s infinite linear;
+        }
+        #loading p {
+            line-height: 40px;
+            margin: 0 0 0 8px;
+            text-align: center;
+            color: #ddd
+        }
+        @keyframes sp-anime {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(359deg); }
+        }
+        #loading.is-hide{
+            display:none;
+        }
+    </style>
+    `
+    document.getElementsByTagName('head')[0].insertAdjacentHTML('beforeend', insertCSS);
+    document.getElementsByTagName('body')[0].insertAdjacentHTML('afterbegin', insertHtml);
+});
+</script>
+        </body>
+        </html>
